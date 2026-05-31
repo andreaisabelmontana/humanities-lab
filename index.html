@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#4338CA" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <title>humanities-lab · technology &amp; the making of the modern world</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, { delimiters: [{left:'$$', right:'$$', display:true},{left:'$', right:'$', display:false}], ignoredTags: ['option','script','textarea'] })"></script>
+
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="title">
+        <span class="dot"></span><strong>humanities-lab</strong>
+        <span class="sub">technology · power · labor · empire · modernity</span>
+      </div>
+      <nav>
+        <a href="#politics">artifacts</a>
+        <a href="#frames">determinism</a>
+        <a href="#argument">argument</a>
+        <a href="#timeline">timeline</a>
+        <a href="#power">power</a>
+        <a href="#labor">labor</a>
+        <a href="#empire">empire</a>
+        <a href="#sources">sources</a>
+        <a href="#dialectic">dialectic</a>
+        <a href="#fallacy">fallacies</a>
+      </nav>
+    </header>
+
+    <main>
+      <p class="intro">
+        A reasoning companion to <em>Technology and the Making of the Modern World</em>
+        (IE Humanities, Patrick De Oliveira). The course's premise, after Walter Benjamin and
+        Langdon Winner, is that technologies are not neutral forces of progress but
+        <strong>human creations that reorganize how power is distributed across society</strong> —
+        a site of contestation, not a verdict of history. These ten widgets let you
+        manipulate that argument: test claims, weigh interpretive frames, trace who wins and loses,
+        and read the long arc from the Lowell mills to the digital age. Built by hand, no AI text generation,
+        in keeping with the course's policy.
+      </p>
+
+      <!-- 1. DO ARTIFACTS HAVE POLITICS — Module: Situating the machines ---- -->
+      <section class="demo" id="politics">
+        <h2>1. Do artifacts have politics?</h2>
+        <p class="cap">Langdon Winner distinguishes two ways technologies carry politics:
+          <strong>(a)</strong> a specific design settles a dispute (a choice that <em>could</em> have gone
+          otherwise), and <strong>(b)</strong> a technology is <em>inherently</em> political — it demands
+          a particular kind of power to work at all. Read each case and sort it. Feedback explains Winner's reading.</p>
+        <div class="reasoning">
+          <div class="prompt-card">
+            <span class="tag" id="pol-tag">case 1 / 6</span>
+            <p class="claim" id="pol-text">—</p>
+          </div>
+          <div class="choices" id="pol-choices">
+            <button class="choice" data-k="flexible">Flexible — could have been built otherwise</button>
+            <button class="choice" data-k="inherent">Inherently political — requires a given order</button>
+            <button class="choice" data-k="neutral">Genuinely neutral — just a tool</button>
+          </div>
+          <p class="feedback" id="pol-fb">Pick the reading that best fits Winner's argument.</p>
+          <div class="reasoning-foot">
+            <div class="readout"><span>score</span><strong id="pol-score" class="mono big">0 / 6</strong></div>
+            <button id="pol-next" class="btn">next case</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. DETERMINISM vs SOCIAL CONSTRUCTION ---------------------------- -->
+      <section class="demo" id="frames">
+        <h2>2. Determinism vs. social construction</h2>
+        <p class="cap">Does technology drive history, or does society drive technology? Slide between the two
+          poles and watch how the <em>same</em> event — the mechanical clock, the railroad, the bomb —
+          gets narrated. The course argues the truth lies in the contested middle: technology as
+          "a site of negotiation," not a cause that "determines the course of history."</p>
+        <div class="row">
+          <div class="canvas-wrap"><canvas id="cv-frames" width="600" height="300"></canvas></div>
+          <div class="ctrls">
+            <label>case
+              <select id="fr-case">
+                <option value="clock">the mechanical clock</option>
+                <option value="rail" selected>the railroad</option>
+                <option value="factory">the factory</option>
+                <option value="bomb">the atomic bomb</option>
+                <option value="net">the internet</option>
+              </select>
+            </label>
+            <label>interpretive frame <span class="mono" id="fr-pv">50</span>
+              <input id="fr-p" type="range" min="0" max="100" step="1" value="50"/></label>
+            <div class="readout"><span>left pole</span><strong class="mono">hard determinism</strong></div>
+            <div class="readout"><span>right pole</span><strong class="mono">social construction</strong></div>
+            <div class="readout"><span>your lean</span><strong id="fr-lean" class="mono big">—</strong></div>
+            <p class="hint" id="fr-note"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. ARGUMENT ANATOMY (Toulmin) ----------------------------------- -->
+      <section class="demo" id="argument">
+        <h2>3. Anatomy of a scholarly argument</h2>
+        <p class="cap">Strong historical writing layers a <strong>claim</strong> on <strong>grounds</strong>
+          (evidence) via a <strong>warrant</strong> (the assumption linking them), shored up by
+          <strong>backing</strong> and tested against a <strong>rebuttal</strong> (Toulmin's model).
+          Pick a thesis from the course and reveal each layer; toggle a part off to feel the argument weaken.</p>
+        <div class="row">
+          <div class="canvas-wrap"><canvas id="cv-arg" width="600" height="340"></canvas></div>
+          <div class="ctrls">
+            <label>thesis
+              <select id="arg-case">
+                <option value="winner" selected>Winner: artifacts have politics</option>
+                <option value="benjamin">Benjamin: civilization = barbarism</option>
+                <option value="misa">Misa: technology is cultural</option>
+              </select>
+            </label>
+            <label class="check"><input id="arg-claim" type="checkbox" checked/> claim</label>
+            <label class="check"><input id="arg-grounds" type="checkbox" checked/> grounds (evidence)</label>
+            <label class="check"><input id="arg-warrant" type="checkbox" checked/> warrant</label>
+            <label class="check"><input id="arg-backing" type="checkbox" checked/> backing</label>
+            <label class="check"><input id="arg-rebuttal" type="checkbox" checked/> rebuttal</label>
+            <div class="readout"><span>argument strength</span><strong id="arg-strength" class="mono big">—</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. PERIODIZATION TIMELINE --------------------------------------- -->
+      <section class="demo" id="timeline">
+        <h2>4. Periodizing the modern world</h2>
+        <p class="cap">The course marches chronologically from the late 1700s to the early 2000s, following
+          Misa's <em>Leonardo to the Internet</em>. Drag the lens across the timeline to read each era's
+          driving technologies, the social order they reshaped, and the matching course session.</p>
+        <div class="row">
+          <div class="canvas-wrap"><canvas id="cv-time" width="600" height="320"></canvas></div>
+          <div class="ctrls">
+            <label>year <span class="mono" id="tl-yv">1840</span>
+              <input id="tl-y" type="range" min="1740" max="2016" step="1" value="1840"/></label>
+            <div class="readout"><span>era</span><strong id="tl-era" class="mono">—</strong></div>
+            <div class="readout"><span>driving tech</span><strong id="tl-tech" class="mono">—</strong></div>
+            <div class="readout"><span>session</span><strong id="tl-sess" class="mono">—</strong></div>
+            <p class="hint" id="tl-note"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. POWER REDISTRIBUTION ----------------------------------------- -->
+      <section class="demo" id="power">
+        <h2>5. Who gains, who loses?</h2>
+        <p class="cap">If technology "reorganizes how power gets distributed across society," every innovation
+          has winners and losers. Pick a technology and adjust how its benefits and burdens fall across
+          four groups; the bars show the redistribution and a Gini-style spread of the outcome.</p>
+        <div class="row">
+          <div class="canvas-wrap"><canvas id="cv-power" width="600" height="320"></canvas></div>
+          <div class="ctrls">
+            <label>technology
+              <select id="pw-case">
+                <option value="loom" selected>power loom (1810s)</option>
+                <option value="rail">railroad (1860s)</option>
+                <option value="home">domestic appliances (1950s)</option>
+                <option value="comp">the computer (1990s)</option>
+              </select>
+            </label>
+            <label>capital owners <span class="mono" id="pw-av">70</span>
+              <input id="pw-a" type="range" min="0" max="100" step="1" value="70"/></label>
+            <label>skilled workers <span class="mono" id="pw-bv">30</span>
+              <input id="pw-b" type="range" min="0" max="100" step="1" value="30"/></label>
+            <label>unskilled / displaced <span class="mono" id="pw-cv">15</span>
+              <input id="pw-c" type="range" min="0" max="100" step="1" value="15"/></label>
+            <label>colonized / global south <span class="mono" id="pw-dv">10</span>
+              <input id="pw-d" type="range" min="0" max="100" step="1" value="10"/></label>
+            <div class="readout"><span>inequality of gains</span><strong id="pw-gini" class="mono big">—</strong></div>
+            <button id="pw-reset" class="btn">reset to historians' read</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. LOWELL MILLS — LABOR & TIME ---------------------------------- -->
+      <section class="demo" id="labor">
+        <h2>6. The factory clock — Lowell mills</h2>
+        <p class="cap">Before the factory, work followed the task and the sun; the mill bell imposed
+          clock-time. Set the working day and the loom's speed to see how the factory system converted
+          a person's hours into output and a wage — and how little of the surplus returned to the
+          "mill girls." Grounded in the Lowell sources (Sessions 3–4).</p>
+        <div class="row">
+          <div class="canvas-wrap"><canvas id="cv-labor" width="600" height="320"></canvas></div>
+          <div class="ctrls">
+            <label>working hours / day <span class="mono" id="lb-hv">13</span>
+              <input id="lb-h" type="range" min="6" max="16" step="1" value="13"/></label>
+            <label>loom output / hour <span class="mono" id="lb-ov">5</span>
+              <input id="lb-o" type="range" min="1" max="12" step="1" value="5"/></label>
+            <label>wage share to worker <span class="mono" id="lb-wv">15</span>%
+              <input id="lb-w" type="range" min="0" max="100" step="1" value="15"/></label>
+            <div class="readout"><span>cloth / day</span><strong id="lb-cloth" class="mono">—</strong></div>
+            <div class="readout"><span>worker share</span><strong id="lb-ws" class="mono">—</strong></div>
+            <div class="readout"><span>owner surplus</span><strong id="lb-os" class="mono big">—</strong></div>
+            <p class="hint">Historical Lowell day ≈ 12–14 h; worker kept a thin slice of the value.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. TOOLS OF EMPIRE ---------------------------------------------- -->
+      <section class="demo" id="empire">
+        <h2>7. Tools of empire</h2>
+        <p class="cap">Steamships, railways, the telegraph, quinine and repeating rifles did not just
+          accompany nineteenth-century imperial conquest — they made its scale possible
+          (Headrick; Sessions 6–9). Toggle each technology and watch the imperial reach, speed of
+          control, and asymmetry of force respond.</p>
+        <div class="row">
+          <div class="canvas-wrap"><canvas id="cv-empire" width="600" height="320"></canvas></div>
+          <div class="ctrls">
+            <label class="check"><input id="em-steam" type="checkbox" checked/> steamship &amp; gunboat</label>
+            <label class="check"><input id="em-rail" type="checkbox"/> railway (interior access)</label>
+            <label class="check"><input id="em-tel" type="checkbox"/> telegraph (command speed)</label>
+            <label class="check"><input id="em-quin" type="checkbox"/> quinine (disease)</label>
+            <label class="check"><input id="em-rifle" type="checkbox"/> repeating rifle (force)</label>
+            <div class="readout"><span>territorial reach</span><strong id="em-reach" class="mono">—</strong></div>
+            <div class="readout"><span>speed of control</span><strong id="em-speed" class="mono">—</strong></div>
+            <div class="readout"><span>force asymmetry</span><strong id="em-force" class="mono big">—</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. SOURCE ANALYSIS ---------------------------------------------- -->
+      <section class="demo" id="sources">
+        <h2>8. Reading sources critically</h2>
+        <p class="cap">Each week pairs <strong>primary sources</strong> (made in the period) with a
+          <strong>scholarly source</strong> (analysis after the fact). Sorting them — and spotting each one's
+          bias and silences — is the core skill of the course. Classify the excerpt, then check what the
+          source can and cannot tell you.</p>
+        <div class="reasoning">
+          <div class="prompt-card">
+            <span class="tag" id="src-tag">source 1 / 6</span>
+            <p class="claim" id="src-text">—</p>
+          </div>
+          <div class="choices" id="src-choices">
+            <button class="choice" data-k="primary">Primary source</button>
+            <button class="choice" data-k="secondary">Secondary / scholarly</button>
+          </div>
+          <p class="feedback" id="src-fb">Decide whether this was produced inside the period or written about it later.</p>
+          <div class="reasoning-foot">
+            <div class="readout"><span>score</span><strong id="src-score" class="mono big">0 / 6</strong></div>
+            <button id="src-next" class="btn">next source</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9. BENJAMIN'S DIALECTIC ----------------------------------------- -->
+      <section class="demo" id="dialectic">
+        <h2>9. Civilization &amp; barbarism — Benjamin's dialectic</h2>
+        <p class="cap">"There is no document of civilization which is not at the same time a document of
+          barbarism." Walter Benjamin refuses the progress-only story. Weigh a technology's celebrated
+          achievements against its hidden costs; the scale tilts to show that the two are not separable
+          but bound together.</p>
+        <div class="row">
+          <div class="canvas-wrap"><canvas id="cv-dialectic" width="600" height="320"></canvas></div>
+          <div class="ctrls">
+            <label>case
+              <select id="di-case">
+                <option value="rail" selected>the transcontinental railroad</option>
+                <option value="light">electric urban lighting</option>
+                <option value="ford">Fordist mass production</option>
+                <option value="moon">the moon landing</option>
+                <option value="digital">the digital revolution</option>
+              </select>
+            </label>
+            <label>attention to achievement <span class="mono" id="di-av">50</span>
+              <input id="di-a" type="range" min="0" max="100" step="1" value="50"/></label>
+            <div class="readout"><span>"document of civilization"</span><strong id="di-civ" class="mono">—</strong></div>
+            <div class="readout"><span>"document of barbarism"</span><strong id="di-bar" class="mono">—</strong></div>
+            <div class="readout"><span>Benjamin's verdict</span><strong id="di-ver" class="mono big">—</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. RHETORIC & FALLACIES ---------------------------------------- -->
+      <section class="demo" id="fallacy">
+        <h2>10. Spotting the determinist fallacy</h2>
+        <p class="cap">Popular writing about technology is full of seductive shortcuts: the gadget that
+          "inevitably" caused an outcome, the lone-genius myth, "the tech is just neutral." Read each
+          claim and name the flaw the course trains you to resist.</p>
+        <div class="reasoning">
+          <div class="prompt-card">
+            <span class="tag" id="fl-tag">claim 1 / 6</span>
+            <p class="claim" id="fl-text">—</p>
+          </div>
+          <div class="choices" id="fl-choices">
+            <button class="choice" data-k="determinism">Technological determinism</button>
+            <button class="choice" data-k="genius">Lone-genius / great-man myth</button>
+            <button class="choice" data-k="neutral">"Technology is neutral"</button>
+            <button class="choice" data-k="progress">Whiggish progress narrative</button>
+          </div>
+          <p class="feedback" id="fl-fb">Name the rhetorical move that obscures technology's politics.</p>
+          <div class="reasoning-foot">
+            <div class="readout"><span>score</span><strong id="fl-score" class="mono big">0 / 6</strong></div>
+            <button id="fl-next" class="btn">next claim</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>humanities-lab — Andrea Montana · IE BCSAI</span>
+      <span class="more">
+        <a href="https://github.com/andreaisabelmontana/discrete-math-lab" target="_blank">discrete-math-lab</a>
+        <a href="https://github.com/andreaisabelmontana/prob-stats-lab" target="_blank">prob-stats-lab</a>
+        <a href="https://github.com/andreaisabelmontana/business-lab" target="_blank">business-lab</a>
+        <a href="https://github.com/andreaisabelmontana/research-methods-lab" target="_blank">research-methods-lab</a>
+        <a href="https://github.com/andreaisabelmontana/big-history-lab" target="_blank">big-history-lab</a>
+        <a href="https://github.com/andreaisabelmontana/humanities-lab" target="_blank">source</a>
+      </span>
+    </footer>
+
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>
