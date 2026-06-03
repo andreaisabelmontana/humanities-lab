@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#4338CA" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <title>humanities-lab · course structure · technology &amp; the making of the modern world</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="./style.css" />
+
+    <style>
+      /* ---- course.html — scoped extensions, reusing :root tokens only ---- */
+      .meta-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 0.6rem;
+        margin-top: 0.4rem;
+      }
+      .meta-cell {
+        background: var(--bg);
+        border: 1px solid var(--rule);
+        border-radius: 6px;
+        padding: 0.55rem 0.7rem;
+      }
+      .meta-cell .k {
+        display: block; color: var(--muted);
+        font-size: 0.7rem; font-weight: 600;
+        text-transform: uppercase; letter-spacing: 0.04em;
+      }
+      .meta-cell .v { color: var(--ink); font-weight: 600; font-size: 0.88rem; }
+      .meta-cell .v.mono { font-family: var(--font-mono); }
+
+      .obj-list { margin: 0.4rem 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+      .obj-list li {
+        display: flex; gap: 0.6rem; align-items: baseline;
+        color: var(--ink-soft); font-size: 0.88rem;
+      }
+      .obj-list li::before {
+        content: ''; flex: 0 0 auto;
+        width: 8px; height: 8px; border-radius: 2px;
+        background: var(--accent); transform: translateY(1px);
+      }
+      .obj-list li strong { color: var(--ink); font-weight: 600; }
+
+      /* weighted bars (methodology + assessment) */
+      .bars { display: flex; flex-direction: column; gap: 0.55rem; margin-top: 0.3rem; }
+      .bar-row { display: grid; grid-template-columns: minmax(140px, 1.1fr) minmax(0, 2fr) auto; gap: 0.7rem; align-items: center; }
+      .bar-row .lbl { color: var(--ink-soft); font-size: 0.84rem; font-weight: 500; }
+      .bar-track { background: var(--rule); border-radius: 999px; height: 9px; overflow: hidden; }
+      .bar-fill { height: 100%; background: var(--accent); border-radius: 999px; }
+      .bar-fill.soft { background: var(--accent-soft); border: 1px solid var(--accent); box-sizing: border-box; }
+      .bar-row .pct { font-family: var(--font-mono); font-weight: 600; font-size: 0.82rem; color: var(--accent); min-width: 3.4em; text-align: right; }
+      .bar-note { color: var(--muted); font-size: 0.76rem; margin: 0.5rem 0 0; }
+
+      .split { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+      @media (max-width: 760px) { .split { grid-template-columns: 1fr; } }
+      .split h3 { font-size: 0.82rem; font-weight: 700; color: var(--ink); margin: 0 0 0.5rem; letter-spacing: -0.01em; }
+
+      /* module header inside program */
+      .module { margin-top: 1.4rem; }
+      .module:first-of-type { margin-top: 0.6rem; }
+      .module-head {
+        display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap;
+        padding-bottom: 0.5rem; margin-bottom: 0.4rem;
+        border-bottom: 1px solid var(--rule-h);
+      }
+      .module-head .mnum {
+        font-family: var(--font-mono); font-size: 0.7rem; font-weight: 600;
+        color: var(--accent); background: var(--accent-soft);
+        padding: 0.15em 0.55em; border-radius: 999px;
+      }
+      .module-head h3 { font-size: 0.98rem; font-weight: 700; color: var(--ink); margin: 0; letter-spacing: -0.01em; }
+      .module-head .mspan { color: var(--muted); font-size: 0.76rem; font-family: var(--font-mono); }
+      .module-blurb { color: var(--muted); font-size: 0.82rem; margin: 0 0 0.6rem; }
+
+      /* session timeline */
+      .timeline { position: relative; margin: 0; padding: 0 0 0 1.1rem; border-left: 2px solid var(--rule); display: flex; flex-direction: column; gap: 1rem; }
+      .sess { position: relative; }
+      .sess::before {
+        content: ''; position: absolute; left: calc(-1.1rem - 6px); top: 0.35rem;
+        width: 10px; height: 10px; border-radius: 999px;
+        background: var(--paper); border: 2px solid var(--accent);
+      }
+      .sess.async::before { background: var(--accent); }
+      .sess.exam::before { border-color: var(--warn); background: var(--warn); }
+      .sess-head { display: flex; align-items: baseline; gap: 0.55rem; flex-wrap: wrap; }
+      .sess-num { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600; color: var(--accent); }
+      .sess-title { font-size: 0.92rem; font-weight: 700; color: var(--ink); }
+      .sess-mode {
+        font-family: var(--font-mono); font-size: 0.64rem; font-weight: 600;
+        text-transform: uppercase; letter-spacing: 0.04em;
+        color: var(--muted); border: 1px solid var(--rule-h);
+        padding: 0.05em 0.45em; border-radius: 999px;
+      }
+      .sess-mode.async { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+      .sess-mode.exam { color: var(--warn); border-color: var(--warn); }
+      .sess-q { color: var(--ink-soft); font-size: 0.84rem; font-style: italic; margin: 0.3rem 0 0.4rem; }
+      .topic-list { margin: 0.3rem 0 0.5rem; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 0.25rem; }
+      .topic-list li { display: flex; gap: 0.5rem; align-items: baseline; color: var(--ink-soft); font-size: 0.83rem; }
+      .topic-list li::before { content: '·'; color: var(--accent); font-weight: 700; }
+      .topic-list li a { font-weight: 500; }
+      .tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.35rem; }
+      .rtag {
+        font-family: var(--font-mono); font-size: 0.68rem; font-weight: 500;
+        color: var(--ink-soft); background: var(--bg);
+        border: 1px solid var(--rule); border-radius: 4px;
+        padding: 0.12em 0.5em;
+      }
+      .rtag.primary { color: var(--accent); border-color: var(--accent); }
+      .rtag.misa { color: var(--ink); border-style: dashed; }
+
+      .legend { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.2rem; }
+      .legend span { display: inline-flex; align-items: center; gap: 0.35em; color: var(--muted); font-size: 0.74rem; }
+      .legend .swatch { width: 10px; height: 10px; border-radius: 999px; }
+
+      .biblio { margin: 0.3rem 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+      .biblio li { color: var(--ink-soft); font-size: 0.86rem; padding-left: 0.9rem; border-left: 2px solid var(--rule-h); }
+      .biblio li strong { color: var(--ink); }
+      .biblio .isbn { font-family: var(--font-mono); color: var(--muted); font-size: 0.78rem; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="title">
+        <span class="dot"></span><strong>humanities-lab</strong>
+        <span class="sub">course structure · technology &amp; the making of the modern world</span>
+      </div>
+      <nav>
+        <a href="./index.html">← interactive demos</a>
+        <a href="#overview">overview</a>
+        <a href="#objectives">objectives</a>
+        <a href="#methodology">methodology</a>
+        <a href="#assessment">assessment</a>
+        <a href="#program">program</a>
+        <a href="#bibliography">bibliography</a>
+        <a href="./SYLLABUS.pdf" target="_blank">syllabus PDF</a>
+      </nav>
+    </header>
+
+    <main>
+      <p class="intro">
+        The full structure of <em>Technology and the Making of the Modern World</em>
+        (IE Humanities, Dr. Patrick De Oliveira), reconstructed from the official syllabus.
+        The course runs chronologically from the late 1700s to the early 2000s, following Thomas Misa's
+        <em>Leonardo to the Internet</em>, with the premise — after Walter Benjamin and Langdon Winner — that
+        <strong>technologies are not neutral engines of progress but human creations that reorganize how power is distributed</strong>.
+        This page lays out every module and all thirty sessions; the
+        <a href="./index.html">interactive demos</a> let you manipulate the arguments these sessions build.
+      </p>
+
+      <!-- (a) OVERVIEW + META ------------------------------------------------ -->
+      <section class="demo" id="overview">
+        <h2>Overview</h2>
+        <p class="cap">A first-year, compulsory IE IMPACT pillar course in the Humanities. We do not study the
+          biographies of lone inventors; we study how technologies — from the early industrial revolution to the
+          early computer age — <strong>reconfigured social, economic, and cultural relationships</strong>, and how
+          technology is better understood as a <em>site of contestation and negotiation</em> than as a force that
+          determines history. Expect to read widely: roughly 25–60 pages per week, usually a set of primary
+          sources paired with a scholarly source.</p>
+        <div class="meta-grid">
+          <div class="meta-cell"><span class="k">Program</span><span class="v">IE IMPACT</span></div>
+          <div class="meta-cell"><span class="k">Code</span><span class="v mono">IEHN6OB-IEIMPACT.1.M.T.TECCUL</span></div>
+          <div class="meta-cell"><span class="k">Area</span><span class="v">Humanities</span></div>
+          <div class="meta-cell"><span class="k">Sessions</span><span class="v mono">30</span></div>
+          <div class="meta-cell"><span class="k">Credits</span><span class="v mono">6.0 ECTS</span></div>
+          <div class="meta-cell"><span class="k">Academic year</span><span class="v mono">2025–26</span></div>
+          <div class="meta-cell"><span class="k">Degree course</span><span class="v">First year</span></div>
+          <div class="meta-cell"><span class="k">Semester</span><span class="v mono">2nd</span></div>
+          <div class="meta-cell"><span class="k">Category</span><span class="v">Compulsory</span></div>
+          <div class="meta-cell"><span class="k">Language</span><span class="v">English</span></div>
+          <div class="meta-cell"><span class="k">Professor</span><span class="v">Patrick De Oliveira</span></div>
+          <div class="meta-cell"><span class="k">Student workload</span><span class="v mono">150 h</span></div>
+        </div>
+        <p class="bar-note">Subject description (verbatim premise): "there is no document of civilization which is not at
+          the same time a document of barbarism" (Benjamin). The unifying theme is that, far from determining history,
+          technology is a contested terrain for competing visions of society — so we attend to its symbolic dimensions too.</p>
+      </section>
+
+      <!-- (b) LEARNING OBJECTIVES -------------------------------------------- -->
+      <section class="demo" id="objectives">
+        <h2>Learning objectives</h2>
+        <p class="cap">The Humanities pillar gives students anchors for a deeper analysis of the reality they live in —
+          encouraging critical thinking and the tools both to analyze others' ideas and to construct and defend their own.</p>
+        <ul class="obj-list">
+          <li><strong>Analytical, critical &amp; creative thinking</strong> — develop the capacity to interrogate
+            received narratives about technology and progress.</li>
+          <li><strong>Comprehensive reading of complex texts</strong> — work through dense primary sources and
+            scholarly arguments at 25–60 pages per week.</li>
+          <li><strong>Investigate, research &amp; obtain information</strong> — locate, weigh, and contextualize
+            historical evidence.</li>
+          <li><strong>Learn about other cultures &amp; human experiences</strong> — recover marginalized voices that
+            simplistic, progress-only stories tend to erase.</li>
+          <li><strong>Write academic texts with different argumentation techniques</strong> — build claims layered on
+            evidence and warrant (try the <a href="./index.html#argument">argument-anatomy demo</a>).</li>
+        </ul>
+      </section>
+
+      <!-- (c) METHODOLOGY + ASSESSMENT --------------------------------------- -->
+      <section class="demo" id="methodology">
+        <h2>Teaching methodology</h2>
+        <p class="cap">IE's method is collaborative, active, and applied. The course mixes <strong>lectures</strong>
+          (foundational context), <strong>readings</strong> (learning through critical analysis), and
+          <strong>discussions</strong> (learning through constructive dialogue), with several asynchronous sessions.
+          The bars show how the estimated 150-hour workload is weighted across activities.</p>
+        <div class="bars">
+          <div class="bar-row"><span class="lbl">Individual studying</span>
+            <div class="bar-track"><div class="bar-fill" style="width:60%"></div></div><span class="pct">60.0%</span></div>
+          <div class="bar-row"><span class="lbl">Lectures</span>
+            <div class="bar-track"><div class="bar-fill" style="width:20%"></div></div><span class="pct">20.0%</span></div>
+          <div class="bar-row"><span class="lbl">Exercises / async / field work</span>
+            <div class="bar-track"><div class="bar-fill" style="width:13.3%"></div></div><span class="pct">13.3%</span></div>
+          <div class="bar-row"><span class="lbl">Discussions</span>
+            <div class="bar-track"><div class="bar-fill" style="width:6.7%"></div></div><span class="pct">6.7%</span></div>
+        </div>
+        <p class="bar-note">Estimated time: lectures 30 h · discussions 10 h · exercises/async/field work 20 h ·
+          individual studying 90 h · <strong>total 150 h</strong>. AI policy: using ChatGPT or any AI tool to generate
+          ideas or content (beyond spelling/grammar) is strictly prohibited — see the
+          <a href="./index.html#fallacy">determinist-fallacy demo</a> for the kind of simplistic narratives the policy guards against.</p>
+      </section>
+
+      <section class="demo" id="assessment">
+        <h2>Assessment</h2>
+        <p class="cap">Continuous evaluation over the semester (ordinary call). Good participation means preparing the
+          readings, listening, and contributing thoughtfully — merely speaking does not earn full marks. The bars show
+          each component's weight.</p>
+        <div class="bars">
+          <div class="bar-row"><span class="lbl">Final evaluation</span>
+            <div class="bar-track"><div class="bar-fill" style="width:70%"></div></div><span class="pct">35%</span></div>
+          <div class="bar-row"><span class="lbl">Midterm evaluation</span>
+            <div class="bar-track"><div class="bar-fill" style="width:60%"></div></div><span class="pct">30%</span></div>
+          <div class="bar-row"><span class="lbl">Continuous assessment</span>
+            <div class="bar-track"><div class="bar-fill" style="width:40%"></div></div><span class="pct">20%</span></div>
+          <div class="bar-row"><span class="lbl">Class participation &amp; preparation</span>
+            <div class="bar-track"><div class="bar-fill" style="width:20%"></div></div><span class="pct">10%</span></div>
+          <div class="bar-row"><span class="lbl">Final reflection</span>
+            <div class="bar-track"><div class="bar-fill soft" style="width:10%"></div></div><span class="pct">5%</span></div>
+        </div>
+        <p class="bar-note">Midterm = in-class (Session 15, format TBD). Final = in-class (Session 30, format TBD).
+          Final reflection = in-class written piece (Sessions 28–29). Re-sit (June/July) is a single comprehensive
+          evaluation capped at 8.0/10; 80% attendance is required.</p>
+      </section>
+
+      <!-- (d) FULL PROGRAM --------------------------------------------------- -->
+      <section class="demo" id="program">
+        <h2>Program — all 30 sessions</h2>
+        <p class="cap">Grouped into four chronological modules. The course moves from situating the machines, through
+          empire and mobility, into systems and ideology, and out to the digital present. Live in-person sessions
+          pair primary sources with discussion; asynchronous sessions are reading-only chapters of Misa.</p>
+        <div class="legend">
+          <span><span class="swatch" style="border:2px solid var(--accent);background:var(--paper)"></span>live in-person</span>
+          <span><span class="swatch" style="background:var(--accent)"></span>asynchronous (Misa)</span>
+          <span><span class="swatch" style="background:var(--warn)"></span>exam / assessment</span>
+        </div>
+
+        <!-- MODULE I -->
+        <div class="module">
+          <div class="module-head">
+            <span class="mnum">Module I</span>
+            <h3>Situating the Machines &amp; the Industrial Revolution</h3>
+            <span class="mspan">Sessions 1–5 · 1740–1851</span>
+          </div>
+          <p class="module-blurb">What the humanities are as a domain of inquiry, whether artifacts carry politics, and
+            how the industrial revolution reorganized labor.</p>
+          <div class="timeline">
+            <div class="sess">
+              <div class="sess-head"><span class="sess-num">01–02</span><span class="sess-title">Situating the Machines</span><span class="sess-mode">live</span></div>
+              <p class="sess-q">How do the humanities operate as a domain of knowledge, and how are their modes of inquiry different from other fields?</p>
+              <ul class="topic-list">
+                <li>The goals of a liberal education; reading critically</li>
+                <li>Winner's thesis that artifacts have politics — see the <a href="./index.html#politics">"do artifacts have politics?" demo</a></li>
+                <li>Course premise: technology as a site of contestation, not a verdict of progress</li>
+              </ul>
+              <div class="tags">
+                <span class="rtag primary">Cronon, "'Only Connect…': The Goals of a Liberal Education" (1998)</span>
+                <span class="rtag primary">Winner, "Do Artifacts Have Politics?" (1998)</span>
+                <span class="rtag">The syllabus</span>
+              </div>
+            </div>
+            <div class="sess">
+              <div class="sess-head"><span class="sess-num">03–04</span><span class="sess-title">Industrial Revolution?</span><span class="sess-mode">live</span></div>
+              <p class="sess-q">What was the industrial revolution, and what were its effects on labor?</p>
+              <ul class="topic-list">
+                <li>The emergence of factory work and clock-time discipline</li>
+                <li>The Lowell mills and the "mill girls" — see the <a href="./index.html#labor">factory-clock demo</a></li>
+                <li>Who gained and who lost from mechanized production — the <a href="./index.html#power">power-redistribution demo</a></li>
+              </ul>
+              <div class="tags"><span class="rtag primary">Primary sources on the Lowell Factory Mills (~30 pp.)</span></div>
+            </div>
+            <div class="sess async">
+              <div class="sess-head"><span class="sess-num">05</span><span class="sess-title">Geographies of Industry</span><span class="sess-mode async">async</span></div>
+              <p class="sess-q">Where and why did industrialization concentrate, and how did it reshape geography?</p>
+              <ul class="topic-list">
+                <li>Regional geographies of early industry; periodizing the modern world — the <a href="./index.html#timeline">timeline demo</a></li>
+              </ul>
+              <div class="tags"><span class="rtag misa">Misa, Ch. 3 — Geographies of Industry, 1740–1851 (pp. 57–91)</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MODULE II -->
+        <div class="module">
+          <div class="module-head">
+            <span class="mnum">Module II</span>
+            <h3>Empire, Mobility &amp; the Lit City</h3>
+            <span class="mspan">Sessions 6–12 · 1840–1914</span>
+          </div>
+          <p class="module-blurb">How technology made nineteenth-century imperial conquest possible — practically and
+            ideologically — structured global networks, and transformed urban life.</p>
+          <div class="timeline">
+            <div class="sess">
+              <div class="sess-head"><span class="sess-num">06–07</span><span class="sess-title">"Tools of Empire" &amp; "Measure of Men"</span><span class="sess-mode">live</span></div>
+              <p class="sess-q">How did technology contribute to nineteenth-century European imperial expansion, both practically and ideologically?</p>
+              <ul class="topic-list">
+                <li>Steamships, quinine, the telegraph and the rifle as instruments of conquest — the <a href="./index.html#empire">tools-of-empire demo</a></li>
+                <li>The "civilizing mission" and the ideology of technological superiority</li>
+              </ul>
+              <div class="tags"><span class="rtag primary">Primary sources on the "civilizing mission" (~30 pp.)</span></div>
+            </div>
+            <div class="sess">
+              <div class="sess-head"><span class="sess-num">08–09</span><span class="sess-title">Empire and Mobility</span><span class="sess-mode">live</span></div>
+              <p class="sess-q">How did technology help structure global networks in the nineteenth century?</p>
+              <ul class="topic-list">
+                <li>Railways and steam as infrastructures of integration and extraction</li>
+                <li>The Transcontinental Railroad — read against Benjamin's dialectic in the <a href="./index.html#dialectic">civilization/barbarism demo</a></li>
+              </ul>
+              <div class="tags"><span class="rtag primary">Primary sources on the Transcontinental Railroad (~30 pp.)</span></div>
+            </div>
+            <div class="sess async">
+              <div class="sess-head"><span class="sess-num">10</span><span class="sess-title">Instruments of Empire · Science &amp; Systems</span><span class="sess-mode async">async</span></div>
+              <p class="sess-q">How did instruments of empire and emerging technical systems extend control across the globe?</p>
+              <ul class="topic-list">
+                <li>Technologies of empire; the rise of large technical systems and applied science</li>
+              </ul>
+              <div class="tags">
+                <span class="rtag misa">Misa, Ch. 4 — Instruments of Empire, 1840–1914 (pp. 92–121)</span>
+                <span class="rtag misa">Misa, Ch. 5 — Science and Systems, 1870–1930 (pp. 150–179)</span>
+              </div>
+            </div>
+            <div class="sess">
+              <div class="sess-head"><span class="sess-num">11–12</span><span class="sess-title">Artificial Light and Technological Systems</span><span class="sess-mode">live</span></div>
+              <p class="sess-q">How did new lighting technologies through the nineteenth and early twentieth century transform urban life?</p>
+              <ul class="topic-list">
+                <li>Gas and electric lighting; the networked, illuminated city</li>
+                <li>Lighting as a technological system and a new social order of time and space</li>
+              </ul>
+              <div class="tags"><span class="rtag primary">Primary sources on urban lighting (~30 pp.)</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MODULE III -->
+        <div class="module">
+          <div class="module-head">
+            <span class="mnum">Module III</span>
+            <h3>Sensation, System &amp; Ideology</h3>
+            <span class="mspan">Sessions 13–20 · 1900–1950</span>
+          </div>
+          <p class="module-blurb">The reshaped human sensorium, the rationalization of labor, and how totalitarian
+            regimes built technological ideologies — bracketing the midterm.</p>
+          <div class="timeline">
+            <div class="sess">
+              <div class="sess-head"><span class="sess-num">13–14</span><span class="sess-title">Sensory Overload</span><span class="sess-mode">live</span></div>
+              <p class="sess-q">How did technological change from the mid-nineteenth to the early-twentieth century reshape the human sensorium?</p>
+              <ul class="topic-list">
+                <li>Speed, spectacle and shock in modern perception</li>
+                <li>Futurism and the aesthetic embrace of the machine</li>
+              </ul>
+              <div class="tags"><span class="rtag primary">Primary sources on Futurism (~30 pp.)</span></div>
+            </div>
+            <div class="sess exam">
+              <div class="sess-head"><span class="sess-num">15</span><span class="sess-title">Midterm</span><span class="sess-mode exam">exam</span></div>
+              <p class="sess-q">In-class midterm evaluation (format TBD) — 30% of the final grade.</p>
+              <ul class="topic-list">
+                <li>Covers Modules I–II and the first half of Module III</li>
+              </ul>
+            </div>
+            <div class="sess">
+              <div class="sess-head"><span class="sess-num">16–17</span><span class="sess-title">Fatigue, Taylorism, Fordism</span><span class="sess-mode">live</span></div>
+              <p class="sess-q">How did new technological systems reshape industrial production and labor in the early twentieth century?</p>
+              <ul class="topic-list">
+                <li>Scientific management, the assembly line, and the science of fatigue</li>
+                <li>Fordist mass production and the remaking of the worker — extends the <a href="./index.html#labor">factory-clock demo</a></li>
+              </ul>
+              <div class="tags"><span class="rtag primary">Primary sources on Fordism (~30 pp.)</span></div>
+            </div>
+            <div class="sess">
+              <div class="sess-head"><span class="sess-num">18–19</span><span class="sess-title">Totalitarian Visions</span><span class="sess-mode">live</span></div>
+              <p class="sess-q">How did technology factor into Stalinist and Nazi ideology?</p>
+              <ul class="topic-list">
+                <li>Technological ideologies of totalitarian regimes</li>
+                <li>Civilization and barbarism bound together — the <a href="./index.html#dialectic">Benjamin dialectic demo</a></li>
+              </ul>
+              <div class="tags"><span class="rtag primary">Primary sources on Nazi technology (~30 pp.)</span></div>
+            </div>
+            <div class="sess async">
+              <div class="sess-head"><span class="sess-num">20</span><span class="sess-title">Materials of Modernism · Means of Destruction</span><span class="sess-mode async">async</span></div>
+              <p class="sess-q">How did new materials and the technologies of war define the first half of the twentieth century?</p>
+              <ul class="topic-list">
+                <li>Modernist materials; the industrialization of destruction</li>
+              </ul>
+              <div class="tags">
+                <span class="rtag misa">Misa, Ch. 6 — Materials of Modernism, 1900–1950 (pp. 150–179)</span>
+                <span class="rtag misa">Misa, Ch. 7 — The Means of Destruction, 1933–1990 (pp. 180–212)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MODULE IV -->
+        <div class="module">
+          <div class="module-head">
+            <span class="mnum">Module IV</span>
+            <h3>Big Science, the Home &amp; the Digital World</h3>
+            <span class="mspan">Sessions 21–30 · 1945–2016</span>
+          </div>
+          <p class="module-blurb">State-directed "Big Science," the gendered industrialization of the household, and the
+            human history of computing — closing with reflection and the final.</p>
+          <div class="timeline">
+            <div class="sess">
+              <div class="sess-head"><span class="sess-num">21–22</span><span class="sess-title">The Military-Industrial-Academic Complex &amp; "Big Science"</span><span class="sess-mode">live</span></div>
+              <p class="sess-q">How did the state shape large-scale technological initiatives in the mid twentieth century?</p>
+              <ul class="topic-list">
+                <li>Big Science, state funding and the Cold War research complex</li>
+                <li>The moon landing as civilization-and-barbarism case — the <a href="./index.html#dialectic">dialectic demo</a></li>
+              </ul>
+              <div class="tags"><span class="rtag primary">Primary sources on the moon landing (~30 pp.)</span></div>
+            </div>
+            <div class="sess">
+              <div class="sess-head"><span class="sess-num">23–24</span><span class="sess-title">Gender and Domestic Technologies</span><span class="sess-mode">live</span></div>
+              <p class="sess-q">How did gender factor into the industrialization of household labor?</p>
+              <ul class="topic-list">
+                <li>Domestic appliances and the gendered division of labor</li>
+                <li>"More work for mother" — who really gained from home technology (the <a href="./index.html#power">power demo</a>'s 1950s case)</li>
+              </ul>
+              <div class="tags"><span class="rtag primary">Primary sources on the modern household (~30 pp.)</span></div>
+            </div>
+            <div class="sess async">
+              <div class="sess-head"><span class="sess-num">25</span><span class="sess-title">Promises of Global Culture · Dominance of the Digital</span><span class="sess-mode async">async</span></div>
+              <p class="sess-q">How did global culture and digital technology come to dominate the turn of the millennium?</p>
+              <ul class="topic-list">
+                <li>Globalized culture; the rise and reach of digital technologies</li>
+              </ul>
+              <div class="tags">
+                <span class="rtag misa">Misa, Ch. 8 — Promises of Global Culture, 1970–2001 (pp. 213–246)</span>
+                <span class="rtag misa">Misa, Ch. 10 — Dominance of the Digital, 1990–2016 (pp. 281–318)</span>
+              </div>
+            </div>
+            <div class="sess">
+              <div class="sess-head"><span class="sess-num">26–27</span><span class="sess-title">Computers: A Human History</span><span class="sess-mode">live</span></div>
+              <p class="sess-q">How have humans been — and how do they continue to be — central to digital technologies?</p>
+              <ul class="topic-list">
+                <li>The hidden human labor behind computing; diversity in computer history</li>
+                <li>Resisting the "technology is neutral" reflex — the <a href="./index.html#fallacy">determinist-fallacy demo</a></li>
+              </ul>
+              <div class="tags"><span class="rtag primary">Primary sources on diversity in computer history (~30 pp.)</span></div>
+            </div>
+            <div class="sess">
+              <div class="sess-head"><span class="sess-num">28–29</span><span class="sess-title">Wrapping Up + In-Class Writing Reflection</span><span class="sess-mode">live</span></div>
+              <p class="sess-q">How does the semester's arc connect back to the questions raised in Session 1?</p>
+              <ul class="topic-list">
+                <li>In-class written reflection (5% of grade) connecting the course's overarching themes</li>
+                <li>Revisits the Cronon and Winner readings from Sessions 1–2</li>
+              </ul>
+              <div class="tags">
+                <span class="rtag primary">Cronon (1998)</span>
+                <span class="rtag primary">Winner (1998)</span>
+              </div>
+            </div>
+            <div class="sess exam">
+              <div class="sess-head"><span class="sess-num">30</span><span class="sess-title">Final Exam</span><span class="sess-mode exam">exam</span></div>
+              <p class="sess-q">In-class final evaluation (format TBD) — 35% of the final grade.</p>
+              <ul class="topic-list">
+                <li>Comprehensive across the whole course</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BIBLIOGRAPHY ------------------------------------------------------- -->
+      <section class="demo" id="bibliography">
+        <h2>Bibliography</h2>
+        <p class="cap">The course's compulsory text anchors the chronological spine; each live session adds a set of
+          primary sources (and, where noted, a scholarly source) for critical reading. The reading list is subject to
+          change, with guidance given on how to approach scholarly articles and primary sources.</p>
+        <ul class="biblio">
+          <li><strong>Compulsory.</strong> Thomas J. Misa (2022). <em>Leonardo to the Internet: Technology and Culture
+            from the Renaissance to the Present</em>, Third Edition. Johns Hopkins University Press.
+            <span class="isbn">ISBN 9781421443102</span> — a printed copy is recommended, since it may be consulted during assessments.</li>
+          <li>William Cronon, "'Only Connect…': The Goals of a Liberal Education," <em>The American Scholar</em> 67, no. 4 (1998): 73–80.</li>
+          <li>Langdon Winner, "Do Artifacts Have Politics?" in <em>Major Problems in the History of American Technology</em>,
+            eds. Merritt Roe Smith &amp; Gregory Clancey (Houghton Mifflin, 1998): 7–13.</li>
+          <li>Weekly primary-source dossiers (~30 pp. each): the Lowell mills, the "civilizing mission", the
+            Transcontinental Railroad, urban lighting, Futurism, Fordism, Nazi technology, the moon landing,
+            the modern household, and diversity in computer history.</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <span>humanities-lab — Andrea Montana · IE BCSAI</span>
+      <span class="more">
+        <a href="https://github.com/andreaisabelmontana/discrete-math-lab" target="_blank">discrete-math-lab</a>
+        <a href="https://github.com/andreaisabelmontana/prob-stats-lab" target="_blank">prob-stats-lab</a>
+        <a href="https://github.com/andreaisabelmontana/business-lab" target="_blank">business-lab</a>
+        <a href="https://github.com/andreaisabelmontana/research-methods-lab" target="_blank">research-methods-lab</a>
+        <a href="https://github.com/andreaisabelmontana/big-history-lab" target="_blank">big-history-lab</a>
+        <a href="https://github.com/andreaisabelmontana/humanities-lab" target="_blank">source</a>
+      </span>
+    </footer>
+  </body>
+</html>
