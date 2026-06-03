@@ -1,0 +1,640 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#4338CA" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <title>humanities-lab · worked example project · a critical technology analysis</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="./style.css" />
+
+    <style>
+      /* ---- project.html — scoped extensions, reusing :root tokens only ---- */
+
+      /* lead / brief block */
+      .lead {
+        background: var(--paper);
+        border: 1px solid var(--rule);
+        border-left: 3px solid var(--accent);
+        border-radius: 10px;
+        padding: 1rem 1.25rem;
+      }
+      .lead .kicker {
+        font-family: var(--font-mono);
+        font-size: 0.7rem; font-weight: 600; letter-spacing: 0.04em;
+        text-transform: uppercase; color: var(--accent);
+        margin: 0 0 0.4rem;
+      }
+      .lead h1 {
+        font-size: 1.35rem; font-weight: 800; letter-spacing: -0.02em;
+        margin: 0 0 0.5rem; color: var(--ink); line-height: 1.25;
+      }
+      .lead p { margin: 0.4rem 0 0; color: var(--ink-soft); font-size: 0.9rem; }
+      .lead p strong { color: var(--ink); font-weight: 600; }
+      .lead em { color: var(--ink); }
+
+      /* metadata grid (mirrors course.html .meta-grid) */
+      .meta-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 0.6rem; margin-top: 0.6rem;
+      }
+      .meta-cell {
+        background: var(--bg); border: 1px solid var(--rule);
+        border-radius: 6px; padding: 0.55rem 0.7rem;
+      }
+      .meta-cell .k {
+        display: block; color: var(--muted);
+        font-size: 0.7rem; font-weight: 600;
+        text-transform: uppercase; letter-spacing: 0.04em;
+      }
+      .meta-cell .v { color: var(--ink); font-weight: 600; font-size: 0.88rem; }
+      .meta-cell .v.mono { font-family: var(--font-mono); }
+
+      /* generic prose inside a .demo card */
+      .prose { color: var(--ink-soft); font-size: 0.9rem; line-height: 1.62; }
+      .prose p { margin: 0 0 0.8rem; }
+      .prose p:last-child { margin-bottom: 0; }
+      .prose strong { color: var(--ink); font-weight: 600; }
+      .prose em { color: var(--ink-soft); }
+      .prose a { font-weight: 500; }
+      .prose h3 {
+        font-size: 0.92rem; font-weight: 700; color: var(--ink);
+        letter-spacing: -0.01em; margin: 1.3rem 0 0.4rem;
+      }
+      .prose h3:first-child { margin-top: 0; }
+      .prose .sub-no {
+        font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600;
+        color: var(--accent); background: var(--accent-soft);
+        padding: 0.1em 0.5em; border-radius: 999px; margin-right: 0.45em;
+      }
+
+      /* thesis pull-box */
+      .thesis {
+        background: var(--accent-soft);
+        border: 1px solid var(--accent);
+        border-radius: 8px;
+        padding: 0.9rem 1.1rem;
+        margin: 0.4rem 0 0.2rem;
+      }
+      .thesis .tlab {
+        font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600;
+        text-transform: uppercase; letter-spacing: 0.04em;
+        color: var(--accent); display: block; margin-bottom: 0.35rem;
+      }
+      .thesis p { margin: 0; color: var(--ink); font-size: 0.96rem; line-height: 1.55; font-weight: 500; }
+
+      /* Toulmin / argument-structure mini cards */
+      .toulmin { display: flex; flex-direction: column; gap: 0.5rem; margin: 0.4rem 0 0; }
+      .tcard {
+        background: var(--bg); border: 1px solid var(--rule);
+        border-left: 3px solid var(--accent); border-radius: 6px;
+        padding: 0.55rem 0.8rem;
+      }
+      .tcard .role {
+        font-family: var(--font-mono); font-size: 0.66rem; font-weight: 600;
+        text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent);
+      }
+      .tcard p { margin: 0.15rem 0 0; color: var(--ink-soft); font-size: 0.85rem; line-height: 1.5; }
+      .tcard p strong { color: var(--ink); }
+
+      /* evidence callouts */
+      .evidence {
+        background: var(--bg); border: 1px dashed var(--rule-h);
+        border-radius: 6px; padding: 0.6rem 0.85rem; margin: 0.6rem 0;
+      }
+      .evidence .elab {
+        font-family: var(--font-mono); font-size: 0.66rem; font-weight: 600;
+        text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted);
+        display: block; margin-bottom: 0.25rem;
+      }
+      .evidence p { margin: 0; font-size: 0.85rem; color: var(--ink-soft); line-height: 1.5; }
+      .evidence p .src { color: var(--accent); font-weight: 600; }
+
+      /* counter / synthesis two-column */
+      .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem; }
+      @media (max-width: 680px) { .duo { grid-template-columns: 1fr; } }
+      .duo .col {
+        background: var(--bg); border: 1px solid var(--rule);
+        border-radius: 8px; padding: 0.8rem 0.95rem;
+      }
+      .duo .col h4 {
+        font-size: 0.82rem; font-weight: 700; margin: 0 0 0.4rem; letter-spacing: -0.01em;
+      }
+      .duo .col.objection h4 { color: var(--bad); }
+      .duo .col.reply h4 { color: var(--good); }
+      .duo .col p { margin: 0; color: var(--ink-soft); font-size: 0.84rem; line-height: 1.55; }
+
+      /* mapping table + rubric */
+      .ptable { width: 100%; border-collapse: collapse; margin-top: 0.5rem; font-size: 0.83rem; }
+      .ptable th, .ptable td {
+        text-align: left; padding: 0.5rem 0.65rem;
+        border-bottom: 1px solid var(--rule); vertical-align: top;
+      }
+      .ptable th {
+        color: var(--muted); font-weight: 600; font-size: 0.7rem;
+        text-transform: uppercase; letter-spacing: 0.04em;
+        border-bottom: 1px solid var(--rule-h);
+      }
+      .ptable td { color: var(--ink-soft); line-height: 1.5; }
+      .ptable td strong { color: var(--ink); font-weight: 600; }
+      .ptable td .mono { font-family: var(--font-mono); color: var(--accent); font-weight: 600; }
+      .ptable tr:last-child td { border-bottom: 0; }
+      .ptable .wt { font-family: var(--font-mono); color: var(--accent); font-weight: 600; text-align: right; white-space: nowrap; }
+
+      /* references */
+      .refs { margin: 0.3rem 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 0.55rem; counter-reset: ref; }
+      .refs li {
+        position: relative; padding-left: 1.9rem;
+        color: var(--ink-soft); font-size: 0.82rem; line-height: 1.5;
+      }
+      .refs li::before {
+        counter-increment: ref; content: '[' counter(ref) ']';
+        position: absolute; left: 0; top: 0;
+        font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600; color: var(--accent);
+      }
+      .refs li .work { font-style: italic; color: var(--ink); }
+      .refs .reftag {
+        font-family: var(--font-mono); font-size: 0.62rem; font-weight: 600;
+        color: var(--accent); border: 1px solid var(--accent); border-radius: 4px;
+        padding: 0.02em 0.4em; margin-left: 0.4em; white-space: nowrap;
+      }
+      .refs .reftag.primary { color: var(--ink); border-color: var(--rule-h); border-style: dashed; }
+
+      /* "exercises" chips that tie to demos / sessions */
+      .chips { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.5rem; }
+      .chip {
+        font-family: var(--font-mono); font-size: 0.68rem; font-weight: 500;
+        color: var(--ink-soft); background: var(--bg);
+        border: 1px solid var(--rule); border-radius: 999px;
+        padding: 0.15em 0.6em;
+      }
+      .chip a { color: var(--accent); }
+
+      .note { color: var(--muted); font-size: 0.78rem; margin: 0.6rem 0 0; }
+      .ext-list { margin: 0.3rem 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+      .ext-list li {
+        display: flex; gap: 0.6rem; align-items: baseline;
+        color: var(--ink-soft); font-size: 0.86rem; line-height: 1.5;
+      }
+      .ext-list li::before {
+        content: ''; flex: 0 0 auto; width: 8px; height: 8px; border-radius: 2px;
+        background: var(--accent); transform: translateY(1px);
+      }
+      .ext-list li strong { color: var(--ink); font-weight: 600; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="title">
+        <span class="dot"></span><strong>humanities-lab</strong>
+        <span class="sub">worked example · a critical technology analysis</span>
+      </div>
+      <nav>
+        <a href="./index.html">← interactive demos</a>
+        <a href="./course.html">course outline</a>
+        <a href="#overview">overview</a>
+        <a href="#brief">brief &amp; thesis</a>
+        <a href="#argument">argument</a>
+        <a href="#method">sources</a>
+        <a href="#counter">counter-arguments</a>
+        <a href="#outcomes">outcomes &amp; rubric</a>
+        <a href="#extensions">extensions</a>
+        <a href="#references">references</a>
+        <a href="./SYLLABUS.pdf" target="_blank">syllabus PDF</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="lead">
+        <p class="kicker">Worked example · model research project</p>
+        <h1>Do facial-recognition systems have politics? A critical analysis of automated facial recognition through the course's lenses</h1>
+        <p>
+          A fully worked <strong>argumentative research project</strong> for
+          <em>Technology and the Making of the Modern World</em> (IE Humanities, Dr. Patrick De Oliveira).
+          It is a model — not a template to copy — of what a strong essay looks like when the course's
+          historical frameworks are turned on a present-day technology. It takes one artifact, automated
+          <strong>facial-recognition technology (FRT)</strong>, and reads it the way the course reads the power loom,
+          the railroad, or the bomb: as a <em>human creation that reorganizes how power is distributed across society</em>,
+          and as a <em>site of contestation</em> rather than a verdict of progress.
+        </p>
+        <p>
+          Everything below is written by hand and grounded in named sources, in keeping with the course's
+          <strong>strict no-AI policy</strong>. Use it to see how a thesis is built, layered on evidence, tested against
+          counter-positions, and connected back to the readings and the
+          <a href="./index.html">interactive demos</a>.
+        </p>
+        <div class="meta-grid">
+          <div class="meta-cell"><span class="k">Course</span><span class="v">Tech &amp; the Modern World</span></div>
+          <div class="meta-cell"><span class="k">Type</span><span class="v">Argumentative essay</span></div>
+          <div class="meta-cell"><span class="k">Length</span><span class="v mono">~3,000 words</span></div>
+          <div class="meta-cell"><span class="k">Core lens</span><span class="v">Winner · Benjamin</span></div>
+          <div class="meta-cell"><span class="k">Sessions exercised</span><span class="v mono">1–2, 6–9, 21–22, 25–27</span></div>
+          <div class="meta-cell"><span class="k">Objects</span><span class="v">FRT · the camera</span></div>
+        </div>
+      </div>
+
+      <!-- (1) OVERVIEW --------------------------------------------------------- -->
+      <section class="demo" id="overview">
+        <h2>1. Project overview</h2>
+        <p class="cap">What the project asks of you, which course sessions it exercises, and what you hand in.
+          A good critical-analysis project does not summarize a technology; it makes an <strong>arguable claim</strong>
+          about how that technology distributes power, and defends it with evidence the way the course's readings do.</p>
+        <div class="prose">
+          <h3><span class="sub-no">goal</span>The analytical goal</h3>
+          <p>
+            Choose one contemporary technology and analyze it using the course's central premise: that technologies are
+            <strong>not neutral forces of progress</strong> but human creations that reorganize power, and that they are
+            best understood as contested terrain rather than as engines that determine history. The deliverable is an
+            argument, not a report. The reader should be able to disagree with your thesis — which means it must be a
+            <em>claim</em>, not a description.
+          </p>
+          <p>
+            This worked example takes <strong>facial recognition</strong> because it lets every major course framework
+            do real work: Winner's question of whether an artifact "has politics," Benjamin's refusal of the
+            progress-only story, Headrick's account of technologies of control, and the historiographical habit of
+            reading primary sources against scholarly ones. (Social-media recommendation algorithms make an equally
+            strong subject; see <a href="#extensions">§7 Extensions</a>.)
+          </p>
+
+          <h3><span class="sub-no">sessions</span>Sessions and skills exercised</h3>
+          <p>
+            The project deliberately reaches across the syllabus rather than living in one week. It draws its core lens
+            from <strong>Sessions 1–2 (Situating the Machines / "Do Artifacts Have Politics?")</strong>, its model of
+            technologies-of-control from <strong>Sessions 6–9 ("Tools of Empire" and Empire &amp; Mobility)</strong>,
+            its institutional account of state-and-research power from <strong>Sessions 21–22 (the
+            Military-Industrial-Academic Complex)</strong>, and its grounding in the digital age from
+            <strong>Sessions 25–27 (Dominance of the Digital / Computers: A Human History)</strong>. It practises the
+            course's signature skills: building a layered argument, sorting primary from secondary sources, and naming
+            the determinist fallacies that simplistic tech writing relies on.
+          </p>
+          <div class="chips">
+            <span class="chip">apply: <a href="./index.html#politics">artifacts-have-politics demo</a></span>
+            <span class="chip">apply: <a href="./index.html#argument">argument-anatomy demo</a></span>
+            <span class="chip">apply: <a href="./index.html#power">power-redistribution demo</a></span>
+            <span class="chip">apply: <a href="./index.html#dialectic">civilization/barbarism demo</a></span>
+            <span class="chip">apply: <a href="./index.html#sources">source-analysis demo</a></span>
+            <span class="chip">apply: <a href="./index.html#fallacy">determinist-fallacy demo</a></span>
+          </div>
+
+          <h3><span class="sub-no">deliverable</span>The deliverable</h3>
+          <p>
+            A roughly 3,000-word argumentative essay with: a clear thesis stated up front; a multi-part argument in which
+            each section advances a sub-claim backed by named evidence; explicit engagement with at least two serious
+            counter-arguments; a reflection on power and ethics; and a full reference list distinguishing primary from
+            secondary sources. No code, no models — the work is interpretive and historical, exactly as the course
+            requires. The structure below maps one-to-one onto sections 2 through 8 of this page.
+          </p>
+        </div>
+      </section>
+
+      <!-- (2) BRIEF & THESIS --------------------------------------------------- -->
+      <section class="demo" id="brief">
+        <h2>2. The brief &amp; the thesis</h2>
+        <p class="cap">A project lives or dies on its thesis. Before writing it, the analyst frames the
+          <strong>problem</strong>, the <strong>question</strong>, and the <strong>stakes</strong> — then commits to a single
+          contestable claim that the rest of the essay has to earn.</p>
+        <div class="prose">
+          <h3>The brief</h3>
+          <p>
+            Facial recognition is routinely sold as a neutral convenience: it unlocks a phone, speeds a border queue,
+            "finds" a suspect. The dominant public story is a progress story — better cameras, better algorithms, safer
+            streets. The course trains us to distrust exactly that framing. The brief, then, is to ask of FRT the question
+            Langdon Winner asked of Robert Moses's low bridges over the parkways of Long Island: <em>does this artifact,
+            in its very design and deployment, settle a political question about who is seen, sorted, and controlled —
+            and on whose terms?</em> [<a href="#references">1</a>]
+          </p>
+          <h3>The research question</h3>
+          <p>
+            <strong>In what sense does facial-recognition technology "have politics," and what does reading it through
+            Winner and Benjamin reveal that the progress narrative conceals?</strong> The question is historical as much
+            as it is contemporary: FRT is the latest instance of a long lineage of technologies of identification and
+            control, from the colonial census and the fingerprint file to the punch-card tabulator.
+          </p>
+          <div class="thesis">
+            <span class="tlab">Thesis</span>
+            <p>
+              Facial recognition is not a neutral tool that merely accelerates a pre-existing task. Following Winner, it
+              is political in <em>both</em> of his senses: particular systems are designed in ways that settle disputes
+              about surveillance in favor of those who deploy them, and large-scale FRT is <em>inherently</em> bound to
+              centralized, asymmetric power because it cannot function without mass image capture, opaque databases, and
+              an authority empowered to act on its outputs. Read through Benjamin, every gain it documents — security,
+              convenience, efficiency — is at the same time a document of the barbarism of expanded, unequal surveillance,
+              borne disproportionately by those already least able to contest being watched.
+            </p>
+          </div>
+          <p class="note">Note how the thesis is falsifiable: a reader could argue FRT <em>is</em> a neutral accelerant, or
+            that its politics are contingent rather than inherent. Those are the counter-arguments §5 must answer.</p>
+        </div>
+      </section>
+
+      <!-- (3) THE WORKED ARGUMENT --------------------------------------------- -->
+      <section class="demo" id="argument">
+        <h2>3. The worked argument</h2>
+        <p class="cap">The body of the essay, built in four moves. Each move is a <strong>sub-claim</strong> carried by
+          <strong>grounds</strong> (evidence) and a <strong>warrant</strong> (the assumption that links them), in the Toulmin
+          structure the <a href="./index.html#argument">argument-anatomy demo</a> visualizes. Together they cumulatively
+          establish the thesis.</p>
+        <div class="prose">
+
+          <h3><span class="sub-no">3.1</span>Move one — Winner's first sense: design settles disputes</h3>
+          <p>
+            Winner's "Do Artifacts Have Politics?" opens with the claim that some technologies embody political choices
+            in their physical arrangement — Moses's bridges, built low so that buses carrying the poor and Black could not
+            reach Jones Beach, encode a social policy in concrete [<a href="#references">1</a>]. FRT works the same way at the
+            level of design decisions that look merely technical. The choice of <em>training data</em>, the chosen
+            <em>threshold</em> for a "match," the decision to deploy at a protest versus a passport gate — each settles a
+            dispute about who bears the risk of error.
+          </p>
+          <div class="evidence">
+            <span class="elab">Grounds — named evidence</span>
+            <p>
+              Joy Buolamwini and Timnit Gebru's <span class="src">"Gender Shades" (2018)</span> audit found commercial
+              facial-classification systems erred on darker-skinned women up to <strong>34%</strong> of the time versus under
+              <strong>1%</strong> for lighter-skinned men [<a href="#references">2</a>]. The error is not a law of optics; it is a
+              consequence of design choices about whose faces filled the training sets.
+            </p>
+          </div>
+          <div class="toulmin">
+            <div class="tcard"><span class="role">Sub-claim</span><p>The specific design of an FRT system <strong>chooses</strong> who is misidentified, and therefore who is wrongly stopped, detained, or denied.</p></div>
+            <div class="tcard"><span class="role">Warrant</span><p>If a technical decision systematically shifts harm onto one group, that decision is political in Winner's first sense — it "could have gone otherwise."</p></div>
+            <div class="tcard"><span class="role">Backing</span><p>Robert Williams, a Black man in Detroit, was wrongfully arrested in 2020 on a false FRT match — a documented harm, not a hypothetical [<a href="#references">5</a>].</p></div>
+          </div>
+          <p>
+            Test this against the <a href="./index.html#politics">artifacts-have-politics demo</a>: FRT belongs in the
+            "flexible — could have been built otherwise" bin <em>at the level of any specific system</em>. That is move
+            one. Move two argues the second, harder half of Winner's claim.
+          </p>
+
+          <h3><span class="sub-no">3.2</span>Move two — Winner's second sense: inherent political requirements</h3>
+          <p>
+            Winner's deeper and more contested claim is that some technologies are "inherently political" — they
+            require, to function at all, a particular arrangement of power [<a href="#references">1</a>]. His example is the
+            atom bomb, which demands a centralized, secretive, hierarchical command structure regardless of who owns it.
+            The argument here is that <em>mass</em> facial recognition is similarly structured. It cannot operate without
+            three things: continuous image capture of public space, a centralized database against which faces are matched,
+            and an authority empowered to act on a match. Each of these concentrates power upward and asymmetrically.
+          </p>
+          <div class="evidence">
+            <span class="elab">Grounds — named evidence</span>
+            <p>
+              Shoshana Zuboff's <span class="src">The Age of Surveillance Capitalism (2019)</span> argues that the
+              business model of the digital economy depends on the unilateral capture of human behavior as raw material
+              [<a href="#references">3</a>]. FRT is this logic turned on the face itself — Zuboff's "dispossession" applied to
+              the body. The requirement is not incidental; it is constitutive.
+            </p>
+          </div>
+          <div class="toulmin">
+            <div class="tcard"><span class="role">Sub-claim</span><p>Mass FRT is inherently political: it cannot exist without centralized capture and an actor authorized to sort and detain.</p></div>
+            <div class="tcard"><span class="role">Warrant</span><p>A technology whose minimum operating conditions require concentrated, asymmetric authority <strong>carries</strong> that politics wherever it is installed (Winner).</p></div>
+            <div class="tcard"><span class="role">Backing</span><p>China's deployment of FRT against Uyghurs shows the system functioning exactly as its structure permits — population-scale sorting by a central authority [<a href="#references">6</a>].</p></div>
+          </div>
+
+          <h3><span class="sub-no">3.3</span>Move three — the long history: FRT as the latest tool of control</h3>
+          <p>
+            The course's chronological method insists we resist treating any technology as unprecedented. FRT belongs in
+            a lineage. Daniel Headrick's <em>The Tools of Empire</em> showed how nineteenth-century steamships, the
+            telegraph, quinine and the repeating rifle did not merely accompany imperial conquest but made its
+            <em>scale</em> possible — they let a small center see, reach, and control a vast periphery [<a href="#references">4</a>].
+            Identification technologies did the same work of legibility: the colonial census, the fingerprint archive,
+            and later the Hollerith punch-card tabulator that mechanized national registration all rendered populations
+            <em>readable</em> to a central power.
+          </p>
+          <div class="evidence">
+            <span class="elab">Grounds — named evidence</span>
+            <p>
+              Edwin Black's <span class="src">IBM and the Holocaust (2001)</span> documents how Hollerith tabulating
+              machines let the Nazi state count, sort, and locate populations at unprecedented speed
+              [<a href="#references">7</a>]. The continuity is structural: FRT is a tool that makes a population legible to
+              a center and actionable upon — the same function, with the friction of paper removed.
+            </p>
+          </div>
+          <p>
+            This is where the project earns its place in a <em>history</em> course. Treating FRT as a brand-new problem
+            is itself a determinist move (the "this changes everything" fallacy the
+            <a href="./index.html#fallacy">determinist-fallacy demo</a> trains you to catch). Reading it as the newest
+            instrument in a long history of legibility-and-control technologies — the move Headrick and the
+            <a href="./index.html#empire">tools-of-empire demo</a> model — sharpens the analysis rather than dating it.
+          </p>
+
+          <h3><span class="sub-no">3.4</span>Move four — Benjamin's dialectic: the document of barbarism</h3>
+          <p>
+            The course's framing epigraph is Benjamin's: "there is no document of civilization which is not at the same
+            time a document of barbarism" [<a href="#references">8</a>]. Applied here, the move is to refuse to let the
+            achievement and the cost be narrated separately. The same system marketed as civilizational progress —
+            faster borders, found children, unlocked phones — is, in the same gesture, the infrastructure of a
+            surveillance order whose costs fall on those already most watched and least able to opt out.
+          </p>
+          <div class="evidence">
+            <span class="elab">Grounds — named evidence</span>
+            <p>
+              Simone Browne's <span class="src">Dark Matters (2015)</span> traces a continuous history of the surveillance
+              of Black bodies — from the branding of enslaved people to biometric checkpoints — showing that "neutral"
+              identification technologies have never fallen evenly [<a href="#references">9</a>]. The convenience is real
+              <em>and</em> the burden is unequal; Benjamin's point is that they are the same object seen from two sides.
+            </p>
+          </div>
+          <p>
+            Run the case through the <a href="./index.html#dialectic">civilization/barbarism demo</a>: as you slide
+            attention toward the achievement, the cost does not disappear — it is structurally entailed. That is the
+            dialectical reading the thesis claims.
+          </p>
+        </div>
+      </section>
+
+      <!-- (4) SOURCES & METHOD ------------------------------------------------ -->
+      <section class="demo" id="method">
+        <h2>4. Sources &amp; method</h2>
+        <p class="cap">The course pairs <strong>primary sources</strong> (made inside the situation) with
+          <strong>scholarly sources</strong> (analysis after the fact), and treats sorting and interrogating them as the
+          core skill. A strong project is explicit about which is which and about each source's silences — the move the
+          <a href="./index.html#sources">source-analysis demo</a> drills.</p>
+        <div class="prose">
+          <h3>Method</h3>
+          <p>
+            The argument is built by close reading rather than data collection. Scholarly works (Winner, Zuboff, Headrick,
+            Browne, Benjamin) supply the interpretive frameworks; primary materials (a vendor's marketing claims, the
+            ACLU's litigation record, journalistic documentation of wrongful arrests, corporate transparency reports)
+            supply the contemporary evidence those frameworks are tested against. The method is to let a framework make a
+            prediction — Winner predicts inherent political requirements; Benjamin predicts an inseparable cost — and then
+            ask whether the primary record bears it out.
+          </p>
+          <h3>Reading sources critically</h3>
+          <p>
+            A vendor's claim that a system is "99.9% accurate" is a <em>primary source</em>: it tells us what the company
+            wants believed, not what is true in the field, and its silence — accuracy <em>for whom</em>, under what
+            lighting, against which database — is itself evidence. Buolamwini and Gebru's audit is a <em>secondary,
+            scholarly source</em> that supplies exactly the disaggregation the vendor omits. Holding the two against each
+            other is the analytical engine of the project; neither alone would suffice.
+          </p>
+          <div class="evidence">
+            <span class="elab">Worked source-sort</span>
+            <p>
+              <span class="src">Primary:</span> a police department's procurement contract for FRT; a company's accuracy
+              press release; a Congressional hearing transcript. &nbsp;
+              <span class="src">Secondary:</span> Zuboff's analysis of surveillance capitalism; Browne's history of
+              racializing surveillance; a peer-reviewed audit. The skill is to name what each <em>can</em> and
+              <em>cannot</em> tell you.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- (5) COUNTER-ARGUMENTS & SYNTHESIS ----------------------------------- -->
+      <section class="demo" id="counter">
+        <h2>5. Counter-arguments &amp; synthesis</h2>
+        <p class="cap">A thesis that never meets its strongest opponent is not yet earned. The course rewards arguments
+          that <strong>steel-man</strong> the other side, then answer it. Here are the two most serious objections and the
+          replies that complete the argument.</p>
+        <div class="prose">
+          <div class="duo">
+            <div class="col objection">
+              <h4>Objection A — "The technology is neutral; only use is political"</h4>
+              <p>
+                The hammer builds and kills; blaming the artifact is a category error. FRT just matches patterns — bias
+                and abuse live in human deployment, not in the camera. Fix the policy and the politics dissolve.
+              </p>
+            </div>
+            <div class="col reply">
+              <h4>Reply A</h4>
+              <p>
+                This is the "technology is neutral" reflex the course explicitly trains against (and the
+                <a href="./index.html#fallacy">fallacy demo</a> flags). Winner's reply: some artifacts are flexible, but
+                <em>mass</em> FRT's minimum operating conditions — centralized capture and an authority to act — are not
+                a "use"; they are the technology. You cannot have it without them. The politics are upstream of policy.
+              </p>
+            </div>
+          </div>
+          <div class="duo">
+            <div class="col objection">
+              <h4>Objection B — "Accuracy will improve; the harm is a transient bug"</h4>
+              <p>
+                The Gender Shades disparities are a dataset problem already shrinking. Once error rates equalize across
+                groups, the discrimination critique evaporates and only the convenience remains.
+              </p>
+            </div>
+            <div class="col reply">
+              <h4>Reply B</h4>
+              <p>
+                This concedes the more dangerous point. A <em>perfectly accurate</em> mass-surveillance system is more
+                threatening, not less — it is the flawless legibility Headrick's and Black's cases warn about. Benjamin's
+                dialectic holds even at 100% accuracy: the achievement <em>is</em> the barbarism. Equalizing error rates
+                addresses move one and leaves moves two through four untouched.
+              </p>
+            </div>
+          </div>
+          <h3>Synthesis</h3>
+          <div class="prose" style="margin-top:0;">
+            <p>
+              Holding both replies together sharpens rather than softens the thesis. Against Objection A, FRT is shown to
+              carry politics in its structure, not merely its application. Against Objection B, the politics survive — and
+              intensify — even if the design flaws are fixed. The synthesis is therefore not "FRT is bad," a slogan the
+              course would reject as un-historical, but the more precise claim that <strong>FRT redistributes the power to
+              see, sort, and act upon human beings toward a center, and does so unequally — and that this is a contestable
+              political settlement, not a technical inevitability.</strong> Naming it as contestable is what reopens it to
+              democratic decision, which is Winner's whole point.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- (6) OUTCOMES + RUBRIC ----------------------------------------------- -->
+      <section class="demo" id="outcomes">
+        <h2>6. Mapping to learning outcomes &amp; the rubric</h2>
+        <p class="cap">How the project exercises the syllabus's stated learning objectives, and the rubric a strong
+          submission is graded against. The weights mirror the spirit of the course's continuous-assessment and written
+          components.</p>
+
+        <h3 style="font-size:0.88rem;font-weight:700;color:var(--ink);margin:0.4rem 0 0.2rem;">Learning-outcome mapping</h3>
+        <table class="ptable">
+          <thead>
+            <tr><th>Course learning objective</th><th>Where this project demonstrates it</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Analytical, critical &amp; creative thinking</strong></td><td>Interrogates the progress narrative; turns Winner's two senses of "politics" into testable sub-claims (§3.1–3.2).</td></tr>
+            <tr><td><strong>Comprehensive reading of complex texts</strong></td><td>Reads Winner, Benjamin, Zuboff, Headrick and Browne closely and puts them in conversation (§3, §4).</td></tr>
+            <tr><td><strong>Investigate, research &amp; obtain information</strong></td><td>Gathers and weighs primary and secondary evidence; documents the Gender Shades audit and wrongful-arrest record (§3, §8).</td></tr>
+            <tr><td><strong>Learn about other cultures &amp; human experiences</strong></td><td>Recovers marginalized perspectives — Browne on racializing surveillance, the Uyghur case — that progress-only stories erase (§3.3–3.4).</td></tr>
+            <tr><td><strong>Write academic texts with varied argumentation</strong></td><td>Deploys the full Toulmin structure and explicit counter-argument/synthesis (§3, §5).</td></tr>
+          </tbody>
+        </table>
+
+        <h3 style="font-size:0.88rem;font-weight:700;color:var(--ink);margin:1.2rem 0 0.2rem;">Grading rubric</h3>
+        <table class="ptable">
+          <thead>
+            <tr><th>Criterion</th><th>What earns full marks</th><th class="wt">Weight</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Thesis &amp; framing</strong></td><td>A single, contestable, clearly stated claim grounded in a course framework — not a description.</td><td class="wt">20%</td></tr>
+            <tr><td><strong>Use of frameworks</strong></td><td>Winner and Benjamin (plus one more) applied precisely, not name-dropped; the lens does analytical work.</td><td class="wt">20%</td></tr>
+            <tr><td><strong>Evidence &amp; sources</strong></td><td>Named, accurately cited primary <em>and</em> secondary sources; each source's reach and silence acknowledged.</td><td class="wt">20%</td></tr>
+            <tr><td><strong>Counter-argument &amp; synthesis</strong></td><td>At least two steel-manned objections answered; the synthesis sharpens rather than restates the thesis.</td><td class="wt">15%</td></tr>
+            <tr><td><strong>Historical reasoning</strong></td><td>The technology is placed in a lineage; determinist and "great-man" shortcuts are avoided.</td><td class="wt">15%</td></tr>
+            <tr><td><strong>Structure, prose &amp; citation</strong></td><td>Clear sectioning, academic register, consistent referencing — and visibly the student's own work (no AI).</td><td class="wt">10%</td></tr>
+          </tbody>
+        </table>
+        <p class="note">Total 100%. The AI policy is a grading gate, not a line item: any evidence of generated text or
+          ideas can fail the assignment outright, per the syllabus.</p>
+      </section>
+
+      <!-- (7) EXTENSIONS ------------------------------------------------------ -->
+      <section class="demo" id="extensions">
+        <h2>7. Extensions — other technologies &amp; other lenses</h2>
+        <p class="cap">The same method transfers. Swap the artifact or the framework and the argument re-runs. A few
+          strong alternatives a student could take up.</p>
+        <ul class="ext-list">
+          <li><strong>Social-media recommendation algorithms.</strong> Run the identical argument with the feed as the
+            artifact: Winner's "inherent politics" become the engagement-maximizing objective function; Benjamin's
+            dialectic becomes connection-and-polarization. Zuboff [<a href="#references">3</a>] is the natural anchor.</li>
+          <li><strong>Predictive policing.</strong> Read it through Headrick's tools-of-control [<a href="#references">4</a>]
+            and Browne's racializing surveillance [<a href="#references">9</a>]; the legibility lineage from §3.3 applies almost
+            unchanged.</li>
+          <li><strong>The domestic-technology lens (Sessions 23–24).</strong> Apply Ruth Schwartz Cowan's "more work for
+            mother" to smart-home and care technologies — who really gains when labor is "automated"? Test it on the
+            <a href="./index.html#power">power-redistribution demo</a>'s logic of winners and losers.</li>
+          <li><strong>The Fordism / Taylorism lens (Sessions 16–17).</strong> Read gig-economy platform management as the
+            algorithmic descendant of the stopwatch and the assembly line — the
+            <a href="./index.html#labor">factory-clock demo</a> made digital.</li>
+        </ul>
+      </section>
+
+      <!-- (8) REFERENCES ------------------------------------------------------ -->
+      <section class="demo" id="references">
+        <h2>8. References</h2>
+        <p class="cap">A model reference list, distinguishing scholarly works from primary materials, in the spirit of the
+          course's source discipline. (Page numbers for the course readings follow the editions on the
+          <a href="./course.html#bibliography">course bibliography</a>.)</p>
+        <ol class="refs">
+          <li>Langdon Winner, <span class="work">"Do Artifacts Have Politics?"</span> in <span class="work">Major Problems in the History of American Technology</span>, eds. M. R. Smith &amp; G. Clancey (Houghton Mifflin, 1998), pp. 7–13. <span class="reftag">Sessions 1–2</span></li>
+          <li>Joy Buolamwini &amp; Timnit Gebru, <span class="work">"Gender Shades: Intersectional Accuracy Disparities in Commercial Gender Classification,"</span> <span class="work">Proceedings of Machine Learning Research</span> 81 (2018), pp. 1–15. <span class="reftag">scholarly</span></li>
+          <li>Shoshana Zuboff, <span class="work">The Age of Surveillance Capitalism</span> (PublicAffairs, 2019). <span class="reftag">scholarly</span></li>
+          <li>Daniel R. Headrick, <span class="work">The Tools of Empire: Technology and European Imperialism in the Nineteenth Century</span> (Oxford University Press, 1981). <span class="reftag">Sessions 6–9</span></li>
+          <li>Kashmir Hill, <span class="work">"Wrongfully Accused by an Algorithm,"</span> <span class="work">The New York Times</span>, 24 June 2020. <span class="reftag primary">primary</span></li>
+          <li>Paul Mozur, <span class="work">"One Month, 500,000 Face Scans: How China Is Using A.I. to Profile a Minority,"</span> <span class="work">The New York Times</span>, 14 April 2019. <span class="reftag primary">primary</span></li>
+          <li>Edwin Black, <span class="work">IBM and the Holocaust</span> (Crown, 2001). <span class="reftag">scholarly</span></li>
+          <li>Walter Benjamin, <span class="work">"Theses on the Philosophy of History"</span> (1940), in <span class="work">Illuminations</span>, trans. H. Zohn (Schocken, 1968), thesis VII. <span class="reftag">course epigraph</span></li>
+          <li>Simone Browne, <span class="work">Dark Matters: On the Surveillance of Blackness</span> (Duke University Press, 2015). <span class="reftag">scholarly</span></li>
+          <li>Thomas J. Misa, <span class="work">Leonardo to the Internet: Technology and Culture from the Renaissance to the Present</span>, 3rd ed. (Johns Hopkins University Press, 2022) — esp. ch. 10, "Dominance of the Digital." <span class="reftag">Sessions 25–27</span></li>
+        </ol>
+        <p class="note">References 5 and 6 are journalistic primary documentation of contemporary events; 2, 3, 7 and 9
+          are scholarly analyses; 1, 4, 8 and 10 are core course readings. Sorting them this way is itself part of the
+          assessed work — see the <a href="./index.html#sources">source-analysis demo</a>.</p>
+      </section>
+    </main>
+
+    <footer>
+      <span>humanities-lab — Andrea Montana · IE BCSAI</span>
+      <span class="more">
+        <a href="./index.html">interactive demos</a>
+        <a href="./course.html">course outline</a>
+        <a href="./SYLLABUS.pdf" target="_blank">syllabus</a>
+        <a href="https://github.com/andreaisabelmontana/humanities-lab" target="_blank">source</a>
+      </span>
+    </footer>
+  </body>
+</html>
