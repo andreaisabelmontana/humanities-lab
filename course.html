@@ -122,6 +122,64 @@
       .biblio li { color: var(--ink-soft); font-size: 0.86rem; padding-left: 0.9rem; border-left: 2px solid var(--rule-h); }
       .biblio li strong { color: var(--ink); }
       .biblio .isbn { font-family: var(--font-mono); color: var(--muted); font-size: 0.78rem; }
+      .biblio .anno { display: block; color: var(--muted); font-size: 0.78rem; margin-top: 0.2rem; }
+      .biblio .when { font-family: var(--font-mono); color: var(--accent); font-size: 0.72rem; }
+
+      /* per-session deepening: elaboration, key idea, named thinkers, reading annotations */
+      .sess-detail { color: var(--ink-soft); font-size: 0.83rem; margin: 0.1rem 0 0.45rem; }
+      .sess-key {
+        display: flex; gap: 0.5rem; align-items: baseline;
+        background: var(--accent-soft); border-radius: 6px;
+        padding: 0.4rem 0.6rem; margin: 0.45rem 0;
+      }
+      .sess-key .klabel {
+        flex: 0 0 auto; font-family: var(--font-mono); font-size: 0.62rem; font-weight: 600;
+        text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent);
+        transform: translateY(1px);
+      }
+      .sess-key .ktext { color: var(--ink); font-size: 0.82rem; font-weight: 500; }
+      .names { display: flex; gap: 0.35rem; flex-wrap: wrap; margin: 0.3rem 0 0.1rem; }
+      .name {
+        font-size: 0.7rem; font-weight: 500; color: var(--ink-soft);
+        background: var(--bg); border: 1px solid var(--rule); border-radius: 999px;
+        padding: 0.1em 0.55em;
+      }
+      .rtag .ra { display: block; font-family: var(--font-sans); color: var(--muted); font-weight: 400; font-size: 0.66rem; margin-top: 0.15rem; }
+      .tags.stack { flex-direction: column; gap: 0.45rem; }
+      .tags.stack .rtag { max-width: 100%; }
+
+      /* module learning outcomes */
+      .outcomes {
+        margin: 0 0 0.7rem; padding: 0.55rem 0.75rem;
+        background: var(--bg); border: 1px solid var(--rule); border-radius: 8px;
+      }
+      .outcomes .olabel {
+        font-family: var(--font-mono); font-size: 0.62rem; font-weight: 600;
+        text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted);
+        display: block; margin-bottom: 0.3rem;
+      }
+      .outcomes ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 0.25rem; }
+      .outcomes li { display: flex; gap: 0.5rem; align-items: baseline; color: var(--ink-soft); font-size: 0.81rem; }
+      .outcomes li::before { content: '→'; color: var(--accent); font-weight: 700; flex: 0 0 auto; }
+
+      /* glossary */
+      .glossary { margin: 0.3rem 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem 1.25rem; }
+      @media (max-width: 760px) { .glossary { grid-template-columns: 1fr; } }
+      .gterm { padding-left: 0.8rem; border-left: 2px solid var(--rule-h); }
+      .gterm dt { font-weight: 700; color: var(--ink); font-size: 0.84rem; }
+      .gterm dd { margin: 0.15rem 0 0; color: var(--ink-soft); font-size: 0.8rem; line-height: 1.45; }
+
+      /* assessment detail cards */
+      .assess-detail { margin-top: 0.9rem; display: flex; flex-direction: column; gap: 0.6rem; }
+      .acard {
+        border: 1px solid var(--rule); border-radius: 8px; padding: 0.6rem 0.8rem;
+        background: var(--paper);
+      }
+      .acard-head { display: flex; align-items: baseline; gap: 0.55rem; flex-wrap: wrap; }
+      .acard-head .aname { font-weight: 700; color: var(--ink); font-size: 0.86rem; }
+      .acard-head .awt { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600; color: var(--accent); }
+      .acard p { margin: 0.3rem 0 0; color: var(--ink-soft); font-size: 0.8rem; }
+      .acard p .alab { font-weight: 600; color: var(--ink); }
     </style>
   </head>
   <body>
@@ -137,6 +195,7 @@
         <a href="#methodology">methodology</a>
         <a href="#assessment">assessment</a>
         <a href="#program">program</a>
+        <a href="#concepts">key concepts</a>
         <a href="#bibliography">bibliography</a>
         <a href="./SYLLABUS.pdf" target="_blank">syllabus PDF</a>
       </nav>
@@ -243,6 +302,41 @@
         <p class="bar-note">Midterm = in-class (Session 15, format TBD). Final = in-class (Session 30, format TBD).
           Final reflection = in-class written piece (Sessions 28–29). Re-sit (June/July) is a single comprehensive
           evaluation capped at 8.0/10; 80% attendance is required.</p>
+
+        <div class="assess-detail">
+          <div class="acard">
+            <div class="acard-head"><span class="aname">Class Participation &amp; Preparation</span><span class="awt">10%</span></div>
+            <p><span class="alab">Deliverable.</span> Ongoing, prepared contribution to class-wide discussion across all live sessions.</p>
+            <p><span class="alab">Evaluated on.</span> Doing the readings in advance, active listening, thoughtful and helpful questions, and being a good team member in group work. Merely speaking does not earn full marks; using a device for non-class activities lowers the grade.</p>
+          </div>
+          <div class="acard">
+            <div class="acard-head"><span class="aname">Continuous Assessment</span><span class="awt">20%</span></div>
+            <p><span class="alab">Deliverable.</span> In-class exercises, asynchronous-session work, and field work distributed through the semester.</p>
+            <p><span class="alab">Evaluated on.</span> Consistent engagement with the weekly primary-source dossiers and Misa chapters, and the quality of critical analysis demonstrated in those activities.</p>
+          </div>
+          <div class="acard">
+            <div class="acard-head"><span class="aname">Midterm Evaluation</span><span class="awt">30%</span></div>
+            <p><span class="alab">Deliverable.</span> In-class midterm in Session 15 (format TBD). Covers Sessions 1–14.</p>
+            <p><span class="alab">Evaluated on.</span> Argument and use of evidence over recall; a printed copy of Misa may be consulted.</p>
+          </div>
+          <div class="acard">
+            <div class="acard-head"><span class="aname">Final Evaluation</span><span class="awt">35%</span></div>
+            <p><span class="alab">Deliverable.</span> Comprehensive in-class final in Session 30 (format TBD). Covers the whole course.</p>
+            <p><span class="alab">Evaluated on.</span> Synthesis across the chronological arc and command of the central thesis that technology is a site of contestation.</p>
+          </div>
+          <div class="acard">
+            <div class="acard-head"><span class="aname">Final Reflection</span><span class="awt">5%</span></div>
+            <p><span class="alab">Deliverable.</span> In-class written reflection (Sessions 28–29) connecting personal learning to the Session-1 framing.</p>
+            <p><span class="alab">Evaluated on.</span> Depth of reflection and the ability to link course themes back to the humanities.</p>
+          </div>
+        </div>
+        <p class="bar-note"><strong>Pass &amp; attendance rules.</strong> The minimum passing grade is 5.0/10. Students who do not meet the
+          <strong>80% attendance requirement</strong> automatically fail both the ordinary and extraordinary calls for the year and must re-enroll.
+          Each student has four (4) calls across two academic years to pass the course. The June/July re-sit is a single comprehensive evaluation
+          (continuous-assessment marks do not carry over) and is capped at 8.0/10 ("notable"). Failing more than 18 ECTS after the re-sits means
+          leaving the Program. A grade-review session is offered after each call. <strong>AI policy:</strong> using ChatGPT or any generative tool
+          for ideas or content (beyond spelling/grammar) can mean failing the assignment or the course and referral to the academic-integrity committee.
+          <strong>Laptop policy:</strong> no laptops, phones, or tablets in class except for accessibility or a specific assignment — notes are taken by hand.</p>
       </section>
 
       <!-- (d) FULL PROGRAM --------------------------------------------------- -->
@@ -266,38 +360,63 @@
           </div>
           <p class="module-blurb">What the humanities are as a domain of inquiry, whether artifacts carry politics, and
             how the industrial revolution reorganized labor.</p>
+          <div class="outcomes">
+            <span class="olabel">By the end of this module you should be able to</span>
+            <ul>
+              <li>Explain how humanistic inquiry differs from technical or scientific explanation, and why it matters for understanding technology.</li>
+              <li>Reconstruct and assess Winner's argument that artifacts "have politics," distinguishing inherently political technologies from those whose politics depend on context.</li>
+              <li>Define the industrial revolution as a reorganization of labor, time, and space rather than a simple story of invention.</li>
+              <li>Read a primary source critically — situating the Lowell sources in their authors' interests and silences.</li>
+            </ul>
+          </div>
           <div class="timeline">
             <div class="sess">
               <div class="sess-head"><span class="sess-num">01–02</span><span class="sess-title">Situating the Machines</span><span class="sess-mode">live</span></div>
               <p class="sess-q">How do the humanities operate as a domain of knowledge, and how are their modes of inquiry different from other fields?</p>
+              <p class="sess-detail">The opening sessions establish the course's intellectual stance. Rather than narrating heroic inventors, we ask what kind of knowledge the humanities produce and why interpretation, context, and contestation matter. Cronon's essay frames a liberal education as the cultivation of connection and judgment; Winner's classic essay supplies the analytical move that runs through the whole semester — that technical artifacts embody and enforce particular arrangements of power.</p>
+              <div class="names">
+                <span class="name">William Cronon</span><span class="name">Langdon Winner</span><span class="name">Walter Benjamin</span><span class="name">Robert Moses (Winner's case)</span>
+              </div>
               <ul class="topic-list">
-                <li>The goals of a liberal education; reading critically</li>
+                <li>The goals of a liberal education; how and why to read critically</li>
                 <li>Winner's thesis that artifacts have politics — see the <a href="./index.html#politics">"do artifacts have politics?" demo</a></li>
                 <li>Course premise: technology as a site of contestation, not a verdict of progress</li>
               </ul>
-              <div class="tags">
-                <span class="rtag primary">Cronon, "'Only Connect…': The Goals of a Liberal Education" (1998)</span>
-                <span class="rtag primary">Winner, "Do Artifacts Have Politics?" (1998)</span>
-                <span class="rtag">The syllabus</span>
+              <div class="sess-key"><span class="klabel">Key idea</span><span class="ktext">Technologies are not neutral tools but designed arrangements that distribute power — so studying them is a humanistic, interpretive task.</span></div>
+              <div class="tags stack">
+                <span class="rtag primary">Cronon, "'Only Connect…': The Goals of a Liberal Education," <em>The American Scholar</em> 67.4 (1998): 73–80.<span class="ra">Argues a liberal education is measured by breadth of sympathy and the ability to connect — sets the course's interpretive ethos.</span></span>
+                <span class="rtag primary">Winner, "Do Artifacts Have Politics?" (1998), pp. 7–13.<span class="ra">Foundational claim that designs encode political order (Moses's low parkway bridges; "inherently political" technologies) — the analytic lens for every later case.</span></span>
+                <span class="rtag">The syllabus.<span class="ra">Read as a primary source: expectations, AI policy, and the Benjamin epigraph that frames the course.</span></span>
               </div>
             </div>
             <div class="sess">
               <div class="sess-head"><span class="sess-num">03–04</span><span class="sess-title">Industrial Revolution?</span><span class="sess-mode">live</span></div>
               <p class="sess-q">What was the industrial revolution, and what were its effects on labor?</p>
+              <p class="sess-detail">The question mark is deliberate: we interrogate whether "the industrial revolution" was a single event at all, and shift attention from machines to the people whose working lives were reorganized around them. The Lowell mills offer a concrete case — a planned New England factory town whose young women workers ("mill girls") were simultaneously celebrated as model laborers and disciplined by the clock, the boardinghouse, and the wage.</p>
+              <div class="names">
+                <span class="name">Lowell "mill girls"</span><span class="name">Francis Cabot Lowell</span><span class="name">E. P. Thompson (time-discipline)</span>
+              </div>
               <ul class="topic-list">
                 <li>The emergence of factory work and clock-time discipline</li>
                 <li>The Lowell mills and the "mill girls" — see the <a href="./index.html#labor">factory-clock demo</a></li>
                 <li>Who gained and who lost from mechanized production — the <a href="./index.html#power">power-redistribution demo</a></li>
               </ul>
-              <div class="tags"><span class="rtag primary">Primary sources on the Lowell Factory Mills (~30 pp.)</span></div>
+              <div class="sess-key"><span class="klabel">Key idea</span><span class="ktext">Industrialization was less an explosion of gadgets than a new regime of time, space, and labor discipline that redistributed who controlled work.</span></div>
+              <div class="tags stack"><span class="rtag primary">Primary sources on the Lowell Factory Mills (~30 pp.).<span class="ra">Mill-girl letters, the <em>Lowell Offering</em>, factory regulations and wage tables — read for how the same system looks different from workers' and owners' vantage points.</span></span></div>
             </div>
             <div class="sess async">
               <div class="sess-head"><span class="sess-num">05</span><span class="sess-title">Geographies of Industry</span><span class="sess-mode async">async</span></div>
               <p class="sess-q">Where and why did industrialization concentrate, and how did it reshape geography?</p>
+              <p class="sess-detail">An asynchronous reading session: Misa argues that industrialization was a profoundly <em>geographical</em> phenomenon, clustering in particular regions and cities rather than spreading evenly, and culminating symbolically in the 1851 Great Exhibition at the Crystal Palace. The chapter helps periodize the "modern world" the course will trace.</p>
+              <div class="names">
+                <span class="name">Thomas Misa</span><span class="name">Crystal Palace / Great Exhibition (1851)</span>
+              </div>
               <ul class="topic-list">
-                <li>Regional geographies of early industry; periodizing the modern world — the <a href="./index.html#timeline">timeline demo</a></li>
+                <li>Regional geographies of early industry; why industry clustered</li>
+                <li>Periodizing the modern world — the <a href="./index.html#timeline">timeline demo</a></li>
               </ul>
-              <div class="tags"><span class="rtag misa">Misa, Ch. 3 — Geographies of Industry, 1740–1851 (pp. 57–91)</span></div>
+              <div class="sess-key"><span class="klabel">Key idea</span><span class="ktext">Industry has a map: technological change is uneven and place-bound, concentrating advantage in specific regions and cities.</span></div>
+              <div class="tags stack"><span class="rtag misa">Misa, Ch. 3 — "Geographies of Industry, 1740–1851" (pp. 57–91).<span class="ra">Treats industrialization as regional and urban rather than national; ends with the Crystal Palace as a stage for displaying industrial power.</span></span></div>
             </div>
           </div>
         </div>
@@ -311,44 +430,73 @@
           </div>
           <p class="module-blurb">How technology made nineteenth-century imperial conquest possible — practically and
             ideologically — structured global networks, and transformed urban life.</p>
+          <div class="outcomes">
+            <span class="olabel">By the end of this module you should be able to</span>
+            <ul>
+              <li>Distinguish the material and ideological roles technology played in European imperialism — tools of conquest versus the rhetoric that justified it.</li>
+              <li>Analyze infrastructure (railways, telegraphs, steamships) as a system that integrates and extracts at the same time.</li>
+              <li>Explain the concept of the "large technical system" and how applied science became institutionalized after 1870.</li>
+              <li>Read artificial lighting as a case study in how a single technology reorganizes time, labor, sociability, and the experience of the city.</li>
+            </ul>
+          </div>
           <div class="timeline">
             <div class="sess">
               <div class="sess-head"><span class="sess-num">06–07</span><span class="sess-title">"Tools of Empire" &amp; "Measure of Men"</span><span class="sess-mode">live</span></div>
               <p class="sess-q">How did technology contribute to nineteenth-century European imperial expansion, both practically and ideologically?</p>
+              <p class="sess-detail">Drawing on Daniel Headrick's "tools of empire" thesis, these sessions show how steamships, quinine prophylaxis, the breech-loading rifle, and the telegraph made the late-nineteenth-century "scramble" for Africa and Asia logistically possible. The paired "measure of men" theme examines how Europeans treated their own machinery as proof of civilizational superiority, turning technical difference into a racial and moral hierarchy that justified domination.</p>
+              <div class="names">
+                <span class="name">Daniel Headrick</span><span class="name">Michael Adas ("Machines as the Measure of Men")</span><span class="name">the "civilizing mission"</span>
+              </div>
               <ul class="topic-list">
                 <li>Steamships, quinine, the telegraph and the rifle as instruments of conquest — the <a href="./index.html#empire">tools-of-empire demo</a></li>
                 <li>The "civilizing mission" and the ideology of technological superiority</li>
               </ul>
-              <div class="tags"><span class="rtag primary">Primary sources on the "civilizing mission" (~30 pp.)</span></div>
+              <div class="sess-key"><span class="klabel">Key idea</span><span class="ktext">Technology was both the practical means of imperial conquest and the ideological yardstick used to rank and dominate colonized peoples.</span></div>
+              <div class="tags stack"><span class="rtag primary">Primary sources on the "civilizing mission" (~30 pp.).<span class="ra">Colonial speeches, missionary and engineering accounts that frame railways, medicine, and machinery as gifts of civilization — read for what the rhetoric conceals.</span></span></div>
             </div>
             <div class="sess">
               <div class="sess-head"><span class="sess-num">08–09</span><span class="sess-title">Empire and Mobility</span><span class="sess-mode">live</span></div>
               <p class="sess-q">How did technology help structure global networks in the nineteenth century?</p>
+              <p class="sess-detail">If Sessions 6–7 concern conquest, these concern integration: how railways, steamships, and telegraph cables knit distant places into a single, unevenly connected world. The U.S. Transcontinental Railroad (completed 1869) anchors the discussion — a feat of engineering built on Chinese and Irish migrant labor and the dispossession of Native nations, exemplifying Benjamin's claim that every monument of civilization is also a record of barbarism.</p>
+              <div class="names">
+                <span class="name">Transcontinental Railroad (1869)</span><span class="name">Chinese &amp; Irish railway labor</span><span class="name">Walter Benjamin</span>
+              </div>
               <ul class="topic-list">
                 <li>Railways and steam as infrastructures of integration and extraction</li>
                 <li>The Transcontinental Railroad — read against Benjamin's dialectic in the <a href="./index.html#dialectic">civilization/barbarism demo</a></li>
               </ul>
-              <div class="tags"><span class="rtag primary">Primary sources on the Transcontinental Railroad (~30 pp.)</span></div>
+              <div class="sess-key"><span class="klabel">Key idea</span><span class="ktext">Infrastructures of mobility compress distance and bind the globe together — but the same networks enable extraction and dispossession.</span></div>
+              <div class="tags stack"><span class="rtag primary">Primary sources on the Transcontinental Railroad (~30 pp.).<span class="ra">Promotional images, labor records, and Indigenous responses — read the railroad simultaneously as triumph and as cost.</span></span></div>
             </div>
             <div class="sess async">
               <div class="sess-head"><span class="sess-num">10</span><span class="sess-title">Instruments of Empire · Science &amp; Systems</span><span class="sess-mode async">async</span></div>
               <p class="sess-q">How did instruments of empire and emerging technical systems extend control across the globe?</p>
+              <p class="sess-detail">A double-chapter async session. Misa's "Instruments of Empire" supplies the scholarly backbone for Sessions 6–9; "Science and Systems" then charts the post-1870 emergence of <em>large technical systems</em> and the industrial research laboratory, where science became systematically harnessed to production and management.</p>
+              <div class="names">
+                <span class="name">Thomas Misa</span><span class="name">Thomas Hughes (technical systems)</span><span class="name">industrial research laboratory</span>
+              </div>
               <ul class="topic-list">
                 <li>Technologies of empire; the rise of large technical systems and applied science</li>
               </ul>
-              <div class="tags">
-                <span class="rtag misa">Misa, Ch. 4 — Instruments of Empire, 1840–1914 (pp. 92–121)</span>
-                <span class="rtag misa">Misa, Ch. 5 — Science and Systems, 1870–1930 (pp. 150–179)</span>
+              <div class="sess-key"><span class="klabel">Key idea</span><span class="ktext">After 1870 technology becomes systemic — networks, standards, and laboratories — rather than a matter of stand-alone machines.</span></div>
+              <div class="tags stack">
+                <span class="rtag misa">Misa, Ch. 4 — "Instruments of Empire, 1840–1914" (pp. 92–121).<span class="ra">Scholarly anchor for the empire sessions: how technical means structured colonial control.</span></span>
+                <span class="rtag misa">Misa, Ch. 5 — "Science and Systems, 1870–1930" (pp. 150–179).<span class="ra">Introduces the large technical system and the institutionalization of applied science.</span></span>
               </div>
             </div>
             <div class="sess">
               <div class="sess-head"><span class="sess-num">11–12</span><span class="sess-title">Artificial Light and Technological Systems</span><span class="sess-mode">live</span></div>
               <p class="sess-q">How did new lighting technologies through the nineteenth and early twentieth century transform urban life?</p>
+              <p class="sess-detail">Gas and then electric lighting did far more than brighten streets: they extended the working and leisure day, made the night a governed and commercial space, and required vast networked systems of pipes, wires, and utilities. Following historians like Wolfgang Schivelbusch, we treat illumination as a case study in how a technological system rewrites the rhythms and social order of the modern city.</p>
+              <div class="names">
+                <span class="name">Wolfgang Schivelbusch</span><span class="name">gaslight &amp; electric arc/incandescent lighting</span><span class="name">the "nocturnalization" of the city</span>
+              </div>
               <ul class="topic-list">
                 <li>Gas and electric lighting; the networked, illuminated city</li>
                 <li>Lighting as a technological system and a new social order of time and space</li>
               </ul>
-              <div class="tags"><span class="rtag primary">Primary sources on urban lighting (~30 pp.)</span></div>
+              <div class="sess-key"><span class="klabel">Key idea</span><span class="ktext">Lighting the city was a systemic transformation — colonizing the night and reordering work, commerce, and public life.</span></div>
+              <div class="tags stack"><span class="rtag primary">Primary sources on urban lighting (~30 pp.).<span class="ra">Accounts of gas and electric illumination, utility advertising, and reactions to the lit night — read for how lighting reorganized urban time and space.</span></span></div>
             </div>
           </div>
         </div>
@@ -362,50 +510,82 @@
           </div>
           <p class="module-blurb">The reshaped human sensorium, the rationalization of labor, and how totalitarian
             regimes built technological ideologies — bracketing the midterm.</p>
+          <div class="outcomes">
+            <span class="olabel">By the end of this module you should be able to</span>
+            <ul>
+              <li>Describe how speed, spectacle, and mechanized perception reshaped modern sensory experience, and how Futurism aestheticized that change.</li>
+              <li>Compare Taylorism and Fordism as systems for rationalizing labor, and weigh their costs and promises for workers.</li>
+              <li>Explain how totalitarian regimes mobilized technology both materially and symbolically, refusing the comforting idea that technical "progress" is inherently liberal or benign.</li>
+              <li>Connect modernist materials and the industrialization of warfare to Benjamin's civilization/barbarism dialectic.</li>
+            </ul>
+          </div>
           <div class="timeline">
             <div class="sess">
               <div class="sess-head"><span class="sess-num">13–14</span><span class="sess-title">Sensory Overload</span><span class="sess-mode">live</span></div>
               <p class="sess-q">How did technological change from the mid-nineteenth to the early-twentieth century reshape the human sensorium?</p>
+              <p class="sess-detail">Railways, cinema, electric light, the telephone, and the crowded metropolis bombarded modern subjects with unprecedented speed and stimulus. Following thinkers like Georg Simmel and Walter Benjamin on "shock" experience, we ask how perception itself was retrained — and how the Italian Futurists, led by Marinetti, turned that bombardment into an aesthetic and political program glorifying speed, machinery, and even war.</p>
+              <div class="names">
+                <span class="name">F. T. Marinetti</span><span class="name">Italian Futurism</span><span class="name">Georg Simmel</span><span class="name">Walter Benjamin (shock / distraction)</span>
+              </div>
               <ul class="topic-list">
                 <li>Speed, spectacle and shock in modern perception</li>
                 <li>Futurism and the aesthetic embrace of the machine</li>
               </ul>
-              <div class="tags"><span class="rtag primary">Primary sources on Futurism (~30 pp.)</span></div>
+              <div class="sess-key"><span class="klabel">Key idea</span><span class="ktext">Modern technology did not just change what people did — it retrained how they perceived, and art like Futurism both registered and celebrated that shock.</span></div>
+              <div class="tags stack"><span class="rtag primary">Primary sources on Futurism (~30 pp.).<span class="ra">Marinetti's <em>Futurist Manifesto</em> (1909) and related texts/images — read for the dangerous fusion of machine-worship, speed, and militarism.</span></span></div>
             </div>
             <div class="sess exam">
               <div class="sess-head"><span class="sess-num">15</span><span class="sess-title">Midterm</span><span class="sess-mode exam">exam</span></div>
               <p class="sess-q">In-class midterm evaluation (format TBD) — 30% of the final grade.</p>
+              <p class="sess-detail">A single live in-person session given over to assessment. Closed format to be confirmed; a printed copy of Misa may be consulted. Expect to synthesize across cases rather than recall isolated facts.</p>
               <ul class="topic-list">
-                <li>Covers Modules I–II and the first half of Module III</li>
+                <li>Covers Modules I–II and the first half of Module III (Sessions 1–14)</li>
+                <li>Rewards argument, evidence, and the course's interpretive framework over memorization</li>
               </ul>
+              <div class="sess-key"><span class="klabel">Key idea</span><span class="ktext">Demonstrate that you can argue, with evidence, that technology is a site of contestation rather than a verdict of progress.</span></div>
             </div>
             <div class="sess">
               <div class="sess-head"><span class="sess-num">16–17</span><span class="sess-title">Fatigue, Taylorism, Fordism</span><span class="sess-mode">live</span></div>
               <p class="sess-q">How did new technological systems reshape industrial production and labor in the early twentieth century?</p>
+              <p class="sess-detail">Frederick Winslow Taylor's "scientific management" sought to measure and optimize every motion of the worker; Henry Ford's moving assembly line (1913) embedded that logic in machinery, pairing it with the $5 day. Alongside, a transnational "science of fatigue" studied the worker's body as a motor to be made efficient. Together these systems remade the worker as an interchangeable component — for some a route to prosperity, for others to deskilling and alienation.</p>
+              <div class="names">
+                <span class="name">Frederick W. Taylor</span><span class="name">Henry Ford</span><span class="name">the assembly line</span><span class="name">science of fatigue (Anson Rabinbach)</span>
+              </div>
               <ul class="topic-list">
                 <li>Scientific management, the assembly line, and the science of fatigue</li>
                 <li>Fordist mass production and the remaking of the worker — extends the <a href="./index.html#labor">factory-clock demo</a></li>
               </ul>
-              <div class="tags"><span class="rtag primary">Primary sources on Fordism (~30 pp.)</span></div>
+              <div class="sess-key"><span class="klabel">Key idea</span><span class="ktext">Taylorism and Fordism turned the rationalization of labor into a technological system, treating the worker's body as a machine to be optimized.</span></div>
+              <div class="tags stack"><span class="rtag primary">Primary sources on Fordism (~30 pp.).<span class="ra">Taylor's <em>Principles of Scientific Management</em>, Ford's writings, and worker accounts — read management's promises against the line's lived experience.</span></span></div>
             </div>
             <div class="sess">
               <div class="sess-head"><span class="sess-num">18–19</span><span class="sess-title">Totalitarian Visions</span><span class="sess-mode">live</span></div>
               <p class="sess-q">How did technology factor into Stalinist and Nazi ideology?</p>
+              <p class="sess-detail">Both Stalin's USSR and Hitler's Germany made technology central to their self-image — Soviet electrification and heavy industry, Nazi autobahns, rocketry, and the perverse industrialization of genocide. Following Jeffrey Herf's idea of "reactionary modernism," we examine how regimes could embrace advanced machinery while rejecting liberal modernity, the starkest demonstration that technical progress carries no built-in politics of freedom.</p>
+              <div class="names">
+                <span class="name">Jeffrey Herf ("reactionary modernism")</span><span class="name">Stalinist electrification</span><span class="name">Nazi engineering / Albert Speer</span>
+              </div>
               <ul class="topic-list">
                 <li>Technological ideologies of totalitarian regimes</li>
                 <li>Civilization and barbarism bound together — the <a href="./index.html#dialectic">Benjamin dialectic demo</a></li>
               </ul>
-              <div class="tags"><span class="rtag primary">Primary sources on Nazi technology (~30 pp.)</span></div>
+              <div class="sess-key"><span class="klabel">Key idea</span><span class="ktext">Totalitarian regimes harnessed cutting-edge technology to anti-liberal ends — proof that "advanced" technology is not inherently progressive or humane.</span></div>
+              <div class="tags stack"><span class="rtag primary">Primary sources on Nazi technology (~30 pp.).<span class="ra">Propaganda, engineering documents, and the record of forced labor — read the chilling alignment of technical sophistication with barbarism.</span></span></div>
             </div>
             <div class="sess async">
               <div class="sess-head"><span class="sess-num">20</span><span class="sess-title">Materials of Modernism · Means of Destruction</span><span class="sess-mode async">async</span></div>
               <p class="sess-q">How did new materials and the technologies of war define the first half of the twentieth century?</p>
+              <p class="sess-detail">A double-chapter async session. Misa's "Materials of Modernism" covers steel, concrete, aluminum, and synthetics that built the modernist world; "The Means of Destruction" follows technology into total war, from chemical weapons to the atomic bomb, underscoring that the same systems that built modern life also industrialized killing.</p>
+              <div class="names">
+                <span class="name">Thomas Misa</span><span class="name">steel · concrete · synthetics</span><span class="name">the Manhattan Project</span>
+              </div>
               <ul class="topic-list">
                 <li>Modernist materials; the industrialization of destruction</li>
               </ul>
-              <div class="tags">
-                <span class="rtag misa">Misa, Ch. 6 — Materials of Modernism, 1900–1950 (pp. 150–179)</span>
-                <span class="rtag misa">Misa, Ch. 7 — The Means of Destruction, 1933–1990 (pp. 180–212)</span>
+              <div class="sess-key"><span class="klabel">Key idea</span><span class="ktext">The materials and systems of modern progress were inseparable from the industrialized capacity for total war.</span></div>
+              <div class="tags stack">
+                <span class="rtag misa">Misa, Ch. 6 — "Materials of Modernism, 1900–1950" (pp. 150–179).<span class="ra">How new materials underwrote the look and infrastructure of the modernist twentieth century.</span></span>
+                <span class="rtag misa">Misa, Ch. 7 — "The Means of Destruction, 1933–1990" (pp. 180–212).<span class="ra">Technology, total war, and the bomb — scholarly anchor for the totalitarianism sessions.</span></span>
               </div>
             </div>
           </div>
@@ -420,66 +600,136 @@
           </div>
           <p class="module-blurb">State-directed "Big Science," the gendered industrialization of the household, and the
             human history of computing — closing with reflection and the final.</p>
+          <div class="outcomes">
+            <span class="olabel">By the end of this module you should be able to</span>
+            <ul>
+              <li>Explain how the Cold War state reorganized research into "Big Science" through the military-industrial-academic complex.</li>
+              <li>Use the household as a case to show that labor-saving technology does not automatically save labor — and that its benefits are distributed along gender lines.</li>
+              <li>Recover the hidden and diverse human labor behind computing, countering the myth of the lone (usually male, usually Western) genius.</li>
+              <li>Synthesize the whole semester into a reflective argument about technology, power, and the humanities.</li>
+            </ul>
+          </div>
           <div class="timeline">
             <div class="sess">
               <div class="sess-head"><span class="sess-num">21–22</span><span class="sess-title">The Military-Industrial-Academic Complex &amp; "Big Science"</span><span class="sess-mode">live</span></div>
               <p class="sess-q">How did the state shape large-scale technological initiatives in the mid twentieth century?</p>
+              <p class="sess-detail">After 1945 the scale of technological work changed: research migrated into vast, state-funded collaborations binding the military, industry, and universities — what Eisenhower warned of as the "military-industrial complex" and historians call "Big Science." The Apollo moon landing (1969) is the showcase case: a sublime achievement that was also a Cold War weapon, built atop ballistic-missile technology and the labor of half a million people.</p>
+              <div class="names">
+                <span class="name">"Big Science" (Alvin Weinberg)</span><span class="name">Vannevar Bush</span><span class="name">Apollo / NASA</span><span class="name">Eisenhower's "military-industrial complex"</span>
+              </div>
               <ul class="topic-list">
                 <li>Big Science, state funding and the Cold War research complex</li>
                 <li>The moon landing as civilization-and-barbarism case — the <a href="./index.html#dialectic">dialectic demo</a></li>
               </ul>
-              <div class="tags"><span class="rtag primary">Primary sources on the moon landing (~30 pp.)</span></div>
+              <div class="sess-key"><span class="klabel">Key idea</span><span class="ktext">Mid-century technology became "big": directed and funded by the state, fusing science, industry, and the military into a single Cold War complex.</span></div>
+              <div class="tags stack"><span class="rtag primary">Primary sources on the moon landing (~30 pp.).<span class="ra">Speeches, NASA materials, and contemporary critiques — read Apollo as both an achievement and an instrument of Cold War power.</span></span></div>
             </div>
             <div class="sess">
               <div class="sess-head"><span class="sess-num">23–24</span><span class="sess-title">Gender and Domestic Technologies</span><span class="sess-mode">live</span></div>
               <p class="sess-q">How did gender factor into the industrialization of household labor?</p>
+              <p class="sess-detail">Drawing on Ruth Schwartz Cowan's classic <em>More Work for Mother</em>, these sessions show that twentieth-century domestic appliances — the washing machine, vacuum, refrigerator — did not reduce housework so much as raise its standards and re-entrench it as women's unpaid work. The home becomes a powerful test of the course's thesis: a technology marketed as liberation can quietly reinforce an existing division of power.</p>
+              <div class="names">
+                <span class="name">Ruth Schwartz Cowan ("More Work for Mother")</span><span class="name">the "industrial revolution in the home"</span><span class="name">household appliances</span>
+              </div>
               <ul class="topic-list">
                 <li>Domestic appliances and the gendered division of labor</li>
                 <li>"More work for mother" — who really gained from home technology (the <a href="./index.html#power">power demo</a>'s 1950s case)</li>
               </ul>
-              <div class="tags"><span class="rtag primary">Primary sources on the modern household (~30 pp.)</span></div>
+              <div class="sess-key"><span class="klabel">Key idea</span><span class="ktext">Labor-saving home technology raised expectations rather than freeing time, and reinforced housework as women's gendered, unpaid labor.</span></div>
+              <div class="tags stack"><span class="rtag primary">Primary sources on the modern household (~30 pp.).<span class="ra">Appliance advertising, home-economics literature, and women's accounts — read the gap between the promise of leisure and the reality of "more work for mother."</span></span></div>
             </div>
             <div class="sess async">
               <div class="sess-head"><span class="sess-num">25</span><span class="sess-title">Promises of Global Culture · Dominance of the Digital</span><span class="sess-mode async">async</span></div>
               <p class="sess-q">How did global culture and digital technology come to dominate the turn of the millennium?</p>
+              <p class="sess-detail">A double-chapter async session bringing the chronology to the present. "Promises of Global Culture" examines media, containerized trade, and globalization; "Dominance of the Digital" traces the personal computer, the internet, and the networked world — setting up the final live unit on the human history of computing.</p>
+              <div class="names">
+                <span class="name">Thomas Misa</span><span class="name">globalization &amp; media</span><span class="name">personal computing &amp; the internet</span>
+              </div>
               <ul class="topic-list">
                 <li>Globalized culture; the rise and reach of digital technologies</li>
               </ul>
-              <div class="tags">
-                <span class="rtag misa">Misa, Ch. 8 — Promises of Global Culture, 1970–2001 (pp. 213–246)</span>
-                <span class="rtag misa">Misa, Ch. 10 — Dominance of the Digital, 1990–2016 (pp. 281–318)</span>
+              <div class="sess-key"><span class="klabel">Key idea</span><span class="ktext">Globalization and digital networks are the latest chapter in the same story: technologies that reorganize power, culture, and everyday life.</span></div>
+              <div class="tags stack">
+                <span class="rtag misa">Misa, Ch. 8 — "Promises of Global Culture, 1970–2001" (pp. 213–246).<span class="ra">Media, trade, and the cultural dimensions of globalization.</span></span>
+                <span class="rtag misa">Misa, Ch. 10 — "Dominance of the Digital, 1990–2016" (pp. 281–318).<span class="ra">The computer and internet age; scholarly anchor for Sessions 26–27.</span></span>
               </div>
             </div>
             <div class="sess">
               <div class="sess-head"><span class="sess-num">26–27</span><span class="sess-title">Computers: A Human History</span><span class="sess-mode">live</span></div>
               <p class="sess-q">How have humans been — and how do they continue to be — central to digital technologies?</p>
+              <p class="sess-detail">Against the myth of the lone (male, Western) computing genius, these sessions recover the people who actually made computing work — from the women "computers" and ENIAC programmers, to figures like Ada Lovelace and the data workers and content moderators of today's "ghost work." The session ties directly to the course's AI policy: the labor and inequality behind digital tools are not incidental but constitutive.</p>
+              <div class="names">
+                <span class="name">ENIAC women programmers</span><span class="name">Ada Lovelace</span><span class="name">hidden / "ghost" data labor</span><span class="name">diversity in computing</span>
+              </div>
               <ul class="topic-list">
                 <li>The hidden human labor behind computing; diversity in computer history</li>
                 <li>Resisting the "technology is neutral" reflex — the <a href="./index.html#fallacy">determinist-fallacy demo</a></li>
               </ul>
-              <div class="tags"><span class="rtag primary">Primary sources on diversity in computer history (~30 pp.)</span></div>
+              <div class="sess-key"><span class="klabel">Key idea</span><span class="ktext">Computing has always rested on overlooked and diverse human labor — recovering it dismantles the myth of autonomous, neutral machines.</span></div>
+              <div class="tags stack"><span class="rtag primary">Primary sources on diversity in computer history (~30 pp.).<span class="ra">Accounts of women programmers and marginalized data workers — read for the human labor erased from triumphalist computing narratives.</span></span></div>
             </div>
             <div class="sess">
               <div class="sess-head"><span class="sess-num">28–29</span><span class="sess-title">Wrapping Up + In-Class Writing Reflection</span><span class="sess-mode">live</span></div>
               <p class="sess-q">How does the semester's arc connect back to the questions raised in Session 1?</p>
+              <p class="sess-detail">The course closes by returning to its starting questions. Students write an in-class reflection (5% of the grade) tying the semester's cases back to the framing texts — Cronon on liberal education and Winner on the politics of artifacts — and to Benjamin's dialectic of civilization and barbarism. The aim is a personal, synthetic argument about what studying the history of technology has taught them.</p>
+              <div class="names">
+                <span class="name">William Cronon</span><span class="name">Langdon Winner</span><span class="name">Walter Benjamin</span>
+              </div>
               <ul class="topic-list">
                 <li>In-class written reflection (5% of grade) connecting the course's overarching themes</li>
                 <li>Revisits the Cronon and Winner readings from Sessions 1–2</li>
               </ul>
-              <div class="tags">
-                <span class="rtag primary">Cronon (1998)</span>
-                <span class="rtag primary">Winner (1998)</span>
+              <div class="sess-key"><span class="klabel">Key idea</span><span class="ktext">The semester's many cases resolve into one argument: technology is a contested human creation, and reading it well is a humanistic skill.</span></div>
+              <div class="tags stack">
+                <span class="rtag primary">Cronon (1998).<span class="ra">Revisited — re-read in light of the whole semester's cases.</span></span>
+                <span class="rtag primary">Winner (1998).<span class="ra">Revisited — the "do artifacts have politics?" lens, now tested against thirty sessions of evidence.</span></span>
               </div>
             </div>
             <div class="sess exam">
               <div class="sess-head"><span class="sess-num">30</span><span class="sess-title">Final Exam</span><span class="sess-mode exam">exam</span></div>
               <p class="sess-q">In-class final evaluation (format TBD) — 35% of the final grade.</p>
+              <p class="sess-detail">A live in-person session given over to the comprehensive final. Format to be confirmed; a printed copy of Misa may be consulted. The exam rewards the ability to argue across the whole chronological arc rather than to recall isolated cases.</p>
               <ul class="topic-list">
-                <li>Comprehensive across the whole course</li>
+                <li>Comprehensive across the whole course (Sessions 1–29)</li>
+                <li>Assesses synthesis, evidence, and command of the course's central thesis</li>
               </ul>
+              <div class="sess-key"><span class="klabel">Key idea</span><span class="ktext">Show that you can trace technology as a site of contestation across two centuries — from the Lowell mills to the digital present.</span></div>
             </div>
           </div>
         </div>
+      </section>
+
+      <!-- KEY CONCEPTS GLOSSARY ---------------------------------------------- -->
+      <section class="demo" id="concepts">
+        <h2>Key concepts</h2>
+        <p class="cap">A working vocabulary for the course. These terms recur across modules; keep them in view when
+          reading the primary-source dossiers and Misa, and when arguing in discussion or on assessments.</p>
+        <dl class="glossary">
+          <div class="gterm"><dt>Technological determinism</dt><dd>The (rejected) view that technology autonomously drives historical change and that society merely adapts. The course argues the reverse: technology is shaped by — and reshapes — social choices.</dd></div>
+          <div class="gterm"><dt>Social construction of technology</dt><dd>The approach that technologies take their form through negotiation among interested social groups, rather than by a single technical logic.</dd></div>
+          <div class="gterm"><dt>Politics of artifacts (Winner)</dt><dd>Langdon Winner's claim that designs can embody power relations — either by settling a political issue (e.g., access) or by requiring a particular social order to function.</dd></div>
+          <div class="gterm"><dt>Civilization / barbarism dialectic (Benjamin)</dt><dd>Walter Benjamin's insight that "there is no document of civilization which is not at the same time a document of barbarism" — every achievement carries hidden costs and violence.</dd></div>
+          <div class="gterm"><dt>Liberal education (Cronon)</dt><dd>An education measured by breadth of sympathy and the capacity to "only connect" ideas, people, and consequences — the interpretive ethos behind the course.</dd></div>
+          <div class="gterm"><dt>Large technical system</dt><dd>An interconnected ensemble of machines, organizations, standards, and people (e.g., an electric-power or railway network) that behaves as a system rather than a set of devices. <span class="when">(Sess. 10–12)</span></dd></div>
+          <div class="gterm"><dt>Time-discipline</dt><dd>The reorganization of work and life around clock-time, wages, and the factory bell — central to the industrial reordering of labor. <span class="when">(Sess. 3–4)</span></dd></div>
+          <div class="gterm"><dt>Tools of empire (Headrick)</dt><dd>The technologies — steamships, quinine, telegraphs, repeating rifles — that made nineteenth-century imperial expansion practically achievable.</dd></div>
+          <div class="gterm"><dt>Civilizing mission</dt><dd>The ideology that framed colonial domination as a benevolent gift of technology and progress, masking extraction and violence. <span class="when">(Sess. 6–7)</span></dd></div>
+          <div class="gterm"><dt>Machines as the measure of men (Adas)</dt><dd>The idea that Europeans used their machinery as a yardstick to rank cultures, converting technical difference into racial hierarchy.</dd></div>
+          <div class="gterm"><dt>Nocturnalization</dt><dd>The extension of social, commercial, and working life into the night made possible by gas and electric lighting. <span class="when">(Sess. 11–12)</span></dd></div>
+          <div class="gterm"><dt>The human sensorium</dt><dd>The historically changing organization of human perception; modern speed and spectacle retrained how people saw, heard, and felt. <span class="when">(Sess. 13–14)</span></dd></div>
+          <div class="gterm"><dt>Taylorism / scientific management</dt><dd>Frederick Taylor's system of measuring and standardizing every motion of work to maximize efficiency and managerial control. <span class="when">(Sess. 16–17)</span></dd></div>
+          <div class="gterm"><dt>Fordism</dt><dd>Mass production built on the moving assembly line, interchangeable parts, and high wages for routinized labor — Taylorism embedded in machinery.</dd></div>
+          <div class="gterm"><dt>Science of fatigue</dt><dd>The transnational effort to study the working body as a "human motor" to be optimized against exhaustion.</dd></div>
+          <div class="gterm"><dt>Reactionary modernism (Herf)</dt><dd>The embrace of advanced technology in the service of anti-liberal, anti-Enlightenment politics — exemplified by Nazi Germany. <span class="when">(Sess. 18–19)</span></dd></div>
+          <div class="gterm"><dt>Futurism</dt><dd>The early-twentieth-century avant-garde movement that aestheticized speed, machinery, and even war; a register of technological "shock."</dd></div>
+          <div class="gterm"><dt>Big Science</dt><dd>Large-scale, expensive, state-funded research conducted by big teams and institutions, characteristic of the post-1945 era. <span class="when">(Sess. 21–22)</span></dd></div>
+          <div class="gterm"><dt>Military-industrial-academic complex</dt><dd>The Cold War alliance of armed forces, industry, and universities that directed and funded large technological initiatives.</dd></div>
+          <div class="gterm"><dt>"More work for mother" (Cowan)</dt><dd>Ruth Schwartz Cowan's finding that household appliances raised domestic standards rather than freeing time, re-entrenching women's unpaid labor. <span class="when">(Sess. 23–24)</span></dd></div>
+          <div class="gterm"><dt>Gendered division of labor</dt><dd>The socially assigned split of work by gender, which domestic technology reinforced rather than dissolved.</dd></div>
+          <div class="gterm"><dt>Hidden / ghost labor</dt><dd>The often-invisible human work — programmers, data workers, content moderators — that sustains "automatic" digital systems. <span class="when">(Sess. 26–27)</span></dd></div>
+          <div class="gterm"><dt>Primary vs. scholarly source</dt><dd>A primary source is evidence produced in the period studied; a scholarly source interprets it. Each week pairs the two for critical reading.</dd></div>
+          <div class="gterm"><dt>Primitive accumulation by dispossession</dt><dd>The expropriation of others' work or resources to build capital — invoked in the AI policy to describe how generative-AI firms were built on uncompensated labor.</dd></div>
+        </dl>
       </section>
 
       <!-- BIBLIOGRAPHY ------------------------------------------------------- -->
@@ -489,16 +739,24 @@
           primary sources (and, where noted, a scholarly source) for critical reading. The reading list is subject to
           change, with guidance given on how to approach scholarly articles and primary sources.</p>
         <ul class="biblio">
-          <li><strong>Compulsory.</strong> Thomas J. Misa (2022). <em>Leonardo to the Internet: Technology and Culture
-            from the Renaissance to the Present</em>, Third Edition. Johns Hopkins University Press.
-            <span class="isbn">ISBN 9781421443102</span> — a printed copy is recommended, since it may be consulted during assessments.</li>
-          <li>William Cronon, "'Only Connect…': The Goals of a Liberal Education," <em>The American Scholar</em> 67, no. 4 (1998): 73–80.</li>
-          <li>Langdon Winner, "Do Artifacts Have Politics?" in <em>Major Problems in the History of American Technology</em>,
-            eds. Merritt Roe Smith &amp; Gregory Clancey (Houghton Mifflin, 1998): 7–13.</li>
-          <li>Weekly primary-source dossiers (~30 pp. each): the Lowell mills, the "civilizing mission", the
-            Transcontinental Railroad, urban lighting, Futurism, Fordism, Nazi technology, the moon landing,
-            the modern household, and diversity in computer history.</li>
+          <li><strong>Compulsory text.</strong> Thomas J. Misa (2022). <em>Leonardo to the Internet: Technology and Culture
+            from the Renaissance to the Present</em>, Third Edition. Johns Hopkins University Press. <span class="isbn">ISBN 9781421443102</span>
+            <span class="anno">The scholarly spine of the course; chapters set the context for each module. A printed copy is recommended — it may be consulted during assessments. <span class="when">Chs. 3–8, 10 across Sessions 5, 10, 20, 25</span></span></li>
+          <li><strong>Framing essay.</strong> William Cronon, "'Only Connect…': The Goals of a Liberal Education," <em>The American Scholar</em> 67, no. 4 (1998): 73–80.
+            <span class="anno">Defines a liberal education as breadth of sympathy and the ability to connect — establishes the course's interpretive ethos. <span class="when">Sessions 1–2; revisited 28–29</span></span></li>
+          <li><strong>Framing essay.</strong> Langdon Winner, "Do Artifacts Have Politics?" in <em>Major Problems in the History of American Technology</em>,
+            eds. Merritt Roe Smith &amp; Gregory Clancey (Houghton Mifflin, 1998): 7–13.
+            <span class="anno">The analytic move running through the whole semester: designs embody and enforce political arrangements. <span class="when">Sessions 1–2; revisited 28–29</span></span></li>
+          <li><strong>Edited reader.</strong> Merritt Roe Smith &amp; Gregory Clancey, eds., <em>Major Problems in the History of American Technology</em> (Houghton Mifflin, 1998).
+            <span class="anno">Source volume for the Winner essay and a model anthology of documents-plus-interpretation. <span class="when">Sessions 1–2</span></span></li>
+          <li><strong>Weekly primary-source dossiers</strong> (~30 pp. each), assigned for the live sessions and read alongside Misa:
+            <span class="anno">Lowell Factory Mills <span class="when">(3–4)</span> · the "civilizing mission" <span class="when">(6–7)</span> · Transcontinental Railroad <span class="when">(8–9)</span> · urban lighting <span class="when">(11–12)</span> · Futurism <span class="when">(13–14)</span> · Fordism <span class="when">(16–17)</span> · Nazi technology <span class="when">(18–19)</span> · the moon landing <span class="when">(21–22)</span> · the modern household <span class="when">(23–24)</span> · diversity in computer history <span class="when">(26–27)</span>. Read each for whose interests it serves and what it leaves out.</span></li>
+          <li><strong>Course document.</strong> The syllabus itself, read as a primary source.
+            <span class="anno">Sets expectations, the AI and laptop policies, and the Benjamin epigraph that frames the course. <span class="when">Session 1</span></span></li>
         </ul>
+        <p class="bar-note">Reading list is subject to change; guidance is given on how to approach scholarly articles and primary sources.
+          The named thinkers tagged on each session above (Headrick, Adas, Schivelbusch, Rabinbach, Herf, Cowan, and others)
+          indicate the scholarly conversations the dossiers draw on, even where specific excerpts are confirmed in class.</p>
       </section>
     </main>
 
