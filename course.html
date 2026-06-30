@@ -148,6 +148,24 @@
       .tags.stack { flex-direction: column; gap: 0.45rem; }
       .tags.stack .rtag { max-width: 100%; }
 
+      /* IE IMPACT sustainability lens — the ESG anchors the syllabus tags onto each live unit */
+      .esg-row { display: flex; align-items: center; gap: 0.35rem 0.45rem; flex-wrap: wrap; margin: 0.4rem 0 0.1rem; }
+      .esg-row .esg-label {
+        font-family: var(--font-mono); font-size: 0.6rem; font-weight: 600;
+        text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); flex: 0 0 auto;
+      }
+      .esg {
+        display: inline-flex; align-items: center; gap: 0.35em;
+        font-size: 0.68rem; font-weight: 500; color: var(--ink-soft);
+        background: var(--paper); border: 1px solid var(--rule); border-radius: 999px;
+        padding: 0.1em 0.55em;
+      }
+      .esg .d { width: 7px; height: 7px; border-radius: 999px; flex: 0 0 auto; }
+      .esg.env .d { background: var(--good); }
+      .esg.gov .d { background: var(--accent); }
+      .esg.soc .d { background: var(--warn); }
+      .esg.eco .d { background: var(--gold); }
+
       /* module learning outcomes */
       .outcomes {
         margin: 0 0 0.7rem; padding: 0.55rem 0.75rem;
@@ -239,6 +257,13 @@
         <p class="bar-note">Subject description (verbatim premise): "there is no document of civilization which is not at
           the same time a document of barbarism" (Benjamin). The unifying theme is that, far from determining history,
           technology is a contested terrain for competing visions of society — so we attend to its symbolic dimensions too.</p>
+        <p class="bar-note"><strong>IE IMPACT.</strong> This is a Humanities <em>pillar</em> course in IE University's mandatory
+          IE IMPACT program, whose learning journey begins with three pillars — Humanities, Technology, and
+          Entrepreneurship — and culminates in the IE Challenge, where students apply all three to problems framed by
+          IE's core values of <strong>sustainability</strong> and <strong>diversity</strong>. The Humanities pillar
+          fosters humanistic approaches to interpersonal relations, decision-making, and critical thinking; in line with
+          IE IMPACT, the syllabus tags each live unit with the sustainability themes it engages (see the
+          <a href="#program">program</a>).</p>
       </section>
 
       <!-- (b) LEARNING OBJECTIVES -------------------------------------------- -->
@@ -345,11 +370,19 @@
         <h2>Program — all 30 sessions</h2>
         <p class="cap">Grouped into four chronological modules. The course moves from situating the machines, through
           empire and mobility, into systems and ideology, and out to the digital present. Live in-person sessions
-          pair primary sources with discussion; asynchronous sessions are reading-only chapters of Misa.</p>
+          pair primary sources with discussion; asynchronous sessions are reading-only chapters of Misa. Each live unit
+          also carries the IE IMPACT <strong>Sustainability Topics</strong> the syllabus assigns to it.</p>
         <div class="legend">
           <span><span class="swatch" style="border:2px solid var(--accent);background:var(--paper)"></span>live in-person</span>
           <span><span class="swatch" style="background:var(--accent)"></span>asynchronous (Misa)</span>
           <span><span class="swatch" style="background:var(--warn)"></span>exam / assessment</span>
+        </div>
+        <div class="legend" style="margin-top:0.45rem">
+          <span class="esg-label" style="color:var(--muted)">Sustainability lens</span>
+          <span><span class="swatch" style="background:var(--good)"></span>Environment</span>
+          <span><span class="swatch" style="background:var(--accent)"></span>Governance</span>
+          <span><span class="swatch" style="background:var(--warn)"></span>Social Challenge</span>
+          <span><span class="swatch" style="background:var(--gold)"></span>Economic Development</span>
         </div>
 
         <!-- MODULE I -->
@@ -384,6 +417,7 @@
                 <li>Course premise: technology as a site of contestation, not a verdict of progress</li>
               </ul>
               <div class="sess-key"><span class="klabel">Key idea</span><span class="ktext">Technologies are not neutral tools but designed arrangements that distribute power — so studying them is a humanistic, interpretive task.</span></div>
+              <div class="esg-row"><span class="esg-label">Sustainability lens</span><span class="esg gov"><span class="d"></span>Governance</span><span class="esg soc"><span class="d"></span>Social Challenge</span></div>
               <div class="tags stack">
                 <span class="rtag primary">Cronon, "'Only Connect…': The Goals of a Liberal Education," <em>The American Scholar</em> 67.4 (1998): 73–80.<span class="ra">Argues a liberal education is measured by breadth of sympathy and the ability to connect — sets the course's interpretive ethos.</span></span>
                 <span class="rtag primary">Winner, "Do Artifacts Have Politics?" (1998), pp. 7–13.<span class="ra">Foundational claim that designs encode political order (Moses's low parkway bridges; "inherently political" technologies) — the analytic lens for every later case.</span></span>
@@ -403,6 +437,7 @@
                 <li>Who gained and who lost from mechanized production — the <a href="./index.html#power">power-redistribution demo</a></li>
               </ul>
               <div class="sess-key"><span class="klabel">Key idea</span><span class="ktext">Industrialization was less an explosion of gadgets than a new regime of time, space, and labor discipline that redistributed who controlled work.</span></div>
+              <div class="esg-row"><span class="esg-label">Sustainability lens</span><span class="esg env"><span class="d"></span>Environment</span><span class="esg gov"><span class="d"></span>Governance</span><span class="esg soc"><span class="d"></span>Social Challenge</span><span class="esg eco"><span class="d"></span>Economic Development</span></div>
               <div class="tags stack"><span class="rtag primary">Primary sources on the Lowell Factory Mills (~30 pp.).<span class="ra">Mill-girl letters, the <em>Lowell Offering</em>, factory regulations and wage tables — read for how the same system looks different from workers' and owners' vantage points.</span></span></div>
             </div>
             <div class="sess async">
@@ -453,6 +488,7 @@
                 <li>The "civilizing mission" and the ideology of technological superiority</li>
               </ul>
               <div class="sess-key"><span class="klabel">Key idea</span><span class="ktext">Technology was both the practical means of imperial conquest and the ideological yardstick used to rank and dominate colonized peoples.</span></div>
+              <div class="esg-row"><span class="esg-label">Sustainability lens</span><span class="esg gov"><span class="d"></span>Governance</span><span class="esg soc"><span class="d"></span>Social Challenge</span><span class="esg eco"><span class="d"></span>Economic Development</span></div>
               <div class="tags stack"><span class="rtag primary">Primary sources on the "civilizing mission" (~30 pp.).<span class="ra">Colonial speeches, missionary and engineering accounts that frame railways, medicine, and machinery as gifts of civilization — read for what the rhetoric conceals.</span></span></div>
             </div>
             <div class="sess">
@@ -467,6 +503,7 @@
                 <li>The Transcontinental Railroad — read against Benjamin's dialectic in the <a href="./index.html#dialectic">civilization/barbarism demo</a></li>
               </ul>
               <div class="sess-key"><span class="klabel">Key idea</span><span class="ktext">Infrastructures of mobility compress distance and bind the globe together — but the same networks enable extraction and dispossession.</span></div>
+              <div class="esg-row"><span class="esg-label">Sustainability lens</span><span class="esg env"><span class="d"></span>Environment</span><span class="esg gov"><span class="d"></span>Governance</span><span class="esg soc"><span class="d"></span>Social Challenge</span><span class="esg eco"><span class="d"></span>Economic Development</span></div>
               <div class="tags stack"><span class="rtag primary">Primary sources on the Transcontinental Railroad (~30 pp.).<span class="ra">Promotional images, labor records, and Indigenous responses — read the railroad simultaneously as triumph and as cost.</span></span></div>
             </div>
             <div class="sess async">
@@ -497,6 +534,7 @@
                 <li>Lighting as a technological system and a new social order of time and space</li>
               </ul>
               <div class="sess-key"><span class="klabel">Key idea</span><span class="ktext">Lighting the city was a systemic transformation — colonizing the night and reordering work, commerce, and public life.</span></div>
+              <div class="esg-row"><span class="esg-label">Sustainability lens</span><span class="esg env"><span class="d"></span>Environment</span><span class="esg gov"><span class="d"></span>Governance</span><span class="esg soc"><span class="d"></span>Social Challenge</span><span class="esg eco"><span class="d"></span>Economic Development</span></div>
               <div class="tags stack"><span class="rtag primary">Primary sources on urban lighting (~30 pp.).<span class="ra">Accounts of gas and electric illumination, utility advertising, and reactions to the lit night — read for how lighting reorganized urban time and space.</span></span></div>
             </div>
           </div>
@@ -533,6 +571,7 @@
                 <li>Futurism and the aesthetic embrace of the machine</li>
               </ul>
               <div class="sess-key"><span class="klabel">Key idea</span><span class="ktext">Modern technology did not just change what people did — it retrained how they perceived, and art like Futurism both registered and celebrated that shock.</span></div>
+              <div class="esg-row"><span class="esg-label">Sustainability lens</span><span class="esg gov"><span class="d"></span>Governance</span><span class="esg soc"><span class="d"></span>Social Challenge</span><span class="esg eco"><span class="d"></span>Economic Development</span></div>
               <div class="tags stack"><span class="rtag primary">Primary sources on Futurism (~30 pp.).<span class="ra">Marinetti's <em>Futurist Manifesto</em> (1909) and related texts/images — read for the dangerous fusion of machine-worship, speed, and militarism.</span></span></div>
             </div>
             <div class="sess exam">
@@ -557,6 +596,7 @@
                 <li>Fordist mass production and the remaking of the worker — extends the <a href="./index.html#labor">factory-clock demo</a></li>
               </ul>
               <div class="sess-key"><span class="klabel">Key idea</span><span class="ktext">Taylorism and Fordism turned the rationalization of labor into a technological system, treating the worker's body as a machine to be optimized.</span></div>
+              <div class="esg-row"><span class="esg-label">Sustainability lens</span><span class="esg gov"><span class="d"></span>Governance</span><span class="esg soc"><span class="d"></span>Social Challenge</span><span class="esg eco"><span class="d"></span>Economic Development</span></div>
               <div class="tags stack"><span class="rtag primary">Primary sources on Fordism (~30 pp.).<span class="ra">Taylor's <em>Principles of Scientific Management</em>, Ford's writings, and worker accounts — read management's promises against the line's lived experience.</span></span></div>
             </div>
             <div class="sess">
@@ -571,6 +611,7 @@
                 <li>Civilization and barbarism bound together — the <a href="./index.html#dialectic">Benjamin dialectic demo</a></li>
               </ul>
               <div class="sess-key"><span class="klabel">Key idea</span><span class="ktext">Totalitarian regimes harnessed cutting-edge technology to anti-liberal ends — proof that "advanced" technology is not inherently progressive or humane.</span></div>
+              <div class="esg-row"><span class="esg-label">Sustainability lens</span><span class="esg env"><span class="d"></span>Environment</span><span class="esg gov"><span class="d"></span>Governance</span><span class="esg soc"><span class="d"></span>Social Challenge</span><span class="esg eco"><span class="d"></span>Economic Development</span></div>
               <div class="tags stack"><span class="rtag primary">Primary sources on Nazi technology (~30 pp.).<span class="ra">Propaganda, engineering documents, and the record of forced labor — read the chilling alignment of technical sophistication with barbarism.</span></span></div>
             </div>
             <div class="sess async">
@@ -623,6 +664,7 @@
                 <li>The moon landing as civilization-and-barbarism case — the <a href="./index.html#dialectic">dialectic demo</a></li>
               </ul>
               <div class="sess-key"><span class="klabel">Key idea</span><span class="ktext">Mid-century technology became "big": directed and funded by the state, fusing science, industry, and the military into a single Cold War complex.</span></div>
+              <div class="esg-row"><span class="esg-label">Sustainability lens</span><span class="esg env"><span class="d"></span>Environment</span><span class="esg gov"><span class="d"></span>Governance</span><span class="esg soc"><span class="d"></span>Social Challenge</span><span class="esg eco"><span class="d"></span>Economic Development</span></div>
               <div class="tags stack"><span class="rtag primary">Primary sources on the moon landing (~30 pp.).<span class="ra">Speeches, NASA materials, and contemporary critiques — read Apollo as both an achievement and an instrument of Cold War power.</span></span></div>
             </div>
             <div class="sess">
@@ -637,6 +679,7 @@
                 <li>"More work for mother" — who really gained from home technology (the <a href="./index.html#power">power demo</a>'s 1950s case)</li>
               </ul>
               <div class="sess-key"><span class="klabel">Key idea</span><span class="ktext">Labor-saving home technology raised expectations rather than freeing time, and reinforced housework as women's gendered, unpaid labor.</span></div>
+              <div class="esg-row"><span class="esg-label">Sustainability lens</span><span class="esg soc"><span class="d"></span>Social Challenge</span><span class="esg eco"><span class="d"></span>Economic Development</span></div>
               <div class="tags stack"><span class="rtag primary">Primary sources on the modern household (~30 pp.).<span class="ra">Appliance advertising, home-economics literature, and women's accounts — read the gap between the promise of leisure and the reality of "more work for mother."</span></span></div>
             </div>
             <div class="sess async">
@@ -667,6 +710,7 @@
                 <li>Resisting the "technology is neutral" reflex — the <a href="./index.html#fallacy">determinist-fallacy demo</a></li>
               </ul>
               <div class="sess-key"><span class="klabel">Key idea</span><span class="ktext">Computing has always rested on overlooked and diverse human labor — recovering it dismantles the myth of autonomous, neutral machines.</span></div>
+              <div class="esg-row"><span class="esg-label">Sustainability lens</span><span class="esg soc"><span class="d"></span>Social Challenge</span><span class="esg eco"><span class="d"></span>Economic Development</span></div>
               <div class="tags stack"><span class="rtag primary">Primary sources on diversity in computer history (~30 pp.).<span class="ra">Accounts of women programmers and marginalized data workers — read for the human labor erased from triumphalist computing narratives.</span></span></div>
             </div>
             <div class="sess">
@@ -730,6 +774,7 @@
           <div class="gterm"><dt>Hidden / ghost labor</dt><dd>The often-invisible human work — programmers, data workers, content moderators — that sustains "automatic" digital systems. <span class="when">(Sess. 26–27)</span></dd></div>
           <div class="gterm"><dt>Primary vs. scholarly source</dt><dd>A primary source is evidence produced in the period studied; a scholarly source interprets it. Each week pairs the two for critical reading.</dd></div>
           <div class="gterm"><dt>Primitive accumulation by dispossession</dt><dd>The expropriation of others' work or resources to build capital — invoked in the AI policy to describe how generative-AI firms were built on uncompensated labor.</dd></div>
+          <div class="gterm"><dt>IE IMPACT sustainability lens</dt><dd>The four themes — Environment, Governance, Social Challenge, and Economic Development — that the IE IMPACT program tags onto each live unit, connecting historical cases of technology and power to present-day questions of sustainability and diversity. Shown as coloured chips on the program sessions above.</dd></div>
         </dl>
       </section>
 
