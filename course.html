@@ -198,7 +198,25 @@
       .acard-head .awt { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600; color: var(--accent); }
       .acard p { margin: 0.3rem 0 0; color: var(--ink-soft); font-size: 0.8rem; }
       .acard p .alab { font-weight: 600; color: var(--ink); }
-    </style>
+    
+      /* practice problems */
+      .pp { margin-top: 0.8rem; border: 1px solid var(--rule); border-radius: 8px; padding: 0.7rem 0.85rem; background: var(--bg); }
+      .pp:first-of-type { margin-top: 0.5rem; }
+      .pp .ppq { font-size: 0.86rem; color: var(--ink); line-height: 1.5; }
+      .pp .ppq .qn { font-family: var(--font-mono); font-weight: 700; color: var(--accent); margin-right: 0.4rem; }
+      .pp .pptag { font-family: var(--font-mono); font-size: 0.62rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; color: var(--muted); border: 1px solid var(--rule-h); border-radius: 4px; padding: 0.08em 0.4em; margin-left: 0.4rem; white-space: nowrap; }
+      .pp .ppq code, .ppsol code { font-family: var(--font-mono); font-size: 0.92em; color: var(--accent); }
+      .ppsol { margin-top: 0.5rem; border-top: 1px dotted var(--rule); padding-top: 0.45rem; }
+      .ppsol > summary { cursor: pointer; font-size: 0.78rem; font-weight: 600; color: var(--accent); list-style: none; display: inline-flex; align-items: center; gap: 0.35rem; }
+      .ppsol > summary::-webkit-details-marker { display: none; }
+      .ppsol > summary::before { content: '▸'; font-size: 0.72rem; transition: transform 0.15s ease; }
+      .ppsol[open] > summary::before { transform: rotate(90deg); }
+      .ppsol > summary:hover { text-decoration: underline; }
+      .ppsol .sol { margin-top: 0.45rem; font-size: 0.82rem; color: var(--ink-soft); line-height: 1.5; }
+      .ppsol .sol b { color: var(--ink); }
+      .ppsol .ans { margin-top: 0.45rem; padding: 0.4rem 0.6rem; border-left: 2px solid var(--accent); background: var(--accent-soft); border-radius: 0 5px 5px 0; font-size: 0.82rem; color: var(--ink-soft); }
+      .ppsol .ans b { color: var(--ink); }
+</style>
   </head>
   <body>
     <header>
@@ -214,6 +232,7 @@
         <a href="#methodology">methodology</a>
         <a href="#assessment">assessment</a>
         <a href="#program">program</a>
+        <a href="#practice">practice</a>
         <a href="#concepts">key concepts</a>
         <a href="#bibliography">bibliography</a>
         <a href="./SYLLABUS.pdf" target="_blank">syllabus PDF</a>
@@ -745,6 +764,105 @@
       </section>
 
       <!-- KEY CONCEPTS GLOSSARY ---------------------------------------------- -->
+      <!-- PRACTICE PROBLEMS -->
+      <section class="demo" id="practice">
+        <h2>Practice problems</h2>
+        <p class="cap">Six exam-style questions spanning the course — think each through as you would in the in-class
+          midterm or final, then open the model answer. These reward argument and evidence over recall, so the answers
+          sketch a thesis and the case that supports it rather than a single fact.</p>
+
+        <div class="pp">
+          <div class="ppq"><span class="qn">Q1</span>Using Langdon Winner, explain what it means to say an artifact "has politics," and give one example from the course. <span class="pptag">Winner · politics of artifacts</span></div>
+          <details class="ppsol">
+            <summary>Show model answer</summary>
+            <div class="sol">
+              Winner argues that designs can <b>embody and enforce power relations</b> — either by settling a political
+              issue (his example: Robert Moses's deliberately low parkway overpasses, which kept buses, and the poorer
+              riders who used them, away from certain areas) or by being "inherently political" because they require a
+              particular social order to function. The course's task is therefore interpretive: read the design for the
+              arrangement of power it builds in. A course example is the Lowell mill — its clock, bell, and boardinghouse
+              rules built labour discipline into the very organisation of the factory.
+            </div>
+            <div class="ans"><b>Thesis:</b> artifacts encode power by design; e.g., Moses's low bridges, or the time-discipline built into the Lowell mills.</div>
+          </details>
+        </div>
+
+        <div class="pp">
+          <div class="ppq"><span class="qn">Q2</span>What does Benjamin's claim that "there is no document of civilization which is not at the same time a document of barbarism" imply for the history of technology? Apply it to one case. <span class="pptag">Benjamin · dialectic</span></div>
+          <details class="ppsol">
+            <summary>Show model answer</summary>
+            <div class="sol">
+              It means every celebrated achievement also records hidden costs and violence, so we must read triumph and
+              cost <b>together</b> rather than telling a progress-only story. Applied to the Transcontinental Railroad:
+              a genuine engineering marvel that knit a continent together — and simultaneously a record of exploited
+              Chinese and Irish migrant labour and the dispossession of Native nations. (The moon landing works equally
+              well: a sublime achievement built atop ballistic-missile technology and Cold-War power.)
+            </div>
+            <div class="ans"><b>Thesis:</b> every monument of progress is also a record of its costs — the railroad's marvel rests on migrant labour and Indigenous dispossession.</div>
+          </details>
+        </div>
+
+        <div class="pp">
+          <div class="ppq"><span class="qn">Q3</span>Contrast technological determinism with the social construction of technology. Which does this course endorse, and why? <span class="pptag">frameworks</span></div>
+          <details class="ppsol">
+            <summary>Show model answer</summary>
+            <div class="sol">
+              <b>Determinism</b> holds that technology autonomously drives historical change and that society merely
+              adapts. The <b>social-construction</b> view holds that technologies take their form through negotiation
+              among interested social groups. The course rejects determinism and treats technology as a <i>site of
+              contestation</i> — which is exactly why it studies who gains and who loses from a technology rather than
+              the genius of individual inventors.
+            </div>
+            <div class="ans"><b>Thesis:</b> determinism (tech drives society) vs. social construction (society shapes tech); the course endorses the latter — technology as contested terrain.</div>
+          </details>
+        </div>
+
+        <div class="pp">
+          <div class="ppq"><span class="qn">Q4</span>How did technology serve nineteenth-century European imperialism, both practically and ideologically? <span class="pptag">empire</span></div>
+          <details class="ppsol">
+            <summary>Show model answer</summary>
+            <div class="sol">
+              <b>Practically</b>, Daniel Headrick's "tools of empire" — steamships, quinine prophylaxis, the telegraph,
+              and breech-loading rifles — made conquest and the control of distant territory feasible. <b>Ideologically</b>,
+              Michael Adas's "machines as the measure of men" shows Europeans treated their own technology as proof of
+              civilisational superiority, converting technical difference into a racial hierarchy that justified the
+              "civilizing mission."
+            </div>
+            <div class="ans"><b>Thesis:</b> practically through Headrick's tools of empire (steamships, quinine, telegraph, rifles); ideologically through Adas's "measure of men" → the civilizing mission.</div>
+          </details>
+        </div>
+
+        <div class="pp">
+          <div class="ppq"><span class="qn">Q5</span>According to Ruth Schwartz Cowan, why did twentieth-century household appliances <em>not</em> free women from domestic labour? <span class="pptag">gender · domestic tech</span></div>
+          <details class="ppsol">
+            <summary>Show model answer</summary>
+            <div class="sol">
+              In <i>More Work for Mother</i>, Cowan argues that appliances <b>raised the standards</b> of cleanliness,
+              cooking, and childcare rather than cutting the hours of work, and that they re-entrenched housework as
+              women's unpaid, gendered responsibility — an "industrial revolution in the home" that redistributed the
+              labour rather than removing it. A technology marketed as liberation quietly reinforced an existing
+              division of power.
+            </div>
+            <div class="ans"><b>Thesis:</b> appliances raised domestic standards instead of saving time, re-entrenching housework as women's unpaid labour — "more work for mother."</div>
+          </details>
+        </div>
+
+        <div class="pp">
+          <div class="ppq"><span class="qn">Q6</span>How does recovering the hidden human labour of computing challenge the idea that digital technology is neutral or autonomous? <span class="pptag">computing · ghost labour</span></div>
+          <details class="ppsol">
+            <summary>Show model answer</summary>
+            <div class="sol">
+              From the women "computers" and the ENIAC programmers, and figures like Ada Lovelace, through to today's
+              data labellers and content moderators ("ghost work"), computing has always depended on <b>overlooked and
+              diverse human labour</b>. Surfacing it dismantles the myth of the lone (male, Western) genius and of the
+              "neutral machine," and connects directly to the course's AI policy on the exploited, often global-south
+              labour behind today's tools.
+            </div>
+            <div class="ans"><b>Thesis:</b> computing always rested on hidden, diverse labour (ENIAC women, ghost workers) — exposing it refutes the neutral, autonomous-machine myth.</div>
+          </details>
+        </div>
+      </section>
+
       <section class="demo" id="concepts">
         <h2>Key concepts</h2>
         <p class="cap">A working vocabulary for the course. These terms recur across modules; keep them in view when
